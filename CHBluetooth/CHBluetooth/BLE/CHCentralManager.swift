@@ -2,7 +2,7 @@
 //  CHCentralManager.swift
 //  CHBluetooth
 //
-//  Created by evan on 2023/8/4.
+//  Created by evan on 2024/04/15.
 //
 
 import Foundation
