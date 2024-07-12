@@ -17,6 +17,9 @@
 		5B54B41A2BCCD5CF00D857ED /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4172BCCD5CF00D857ED /* CHBluetooth.swift */; };
 		5B54B41B2BCCD5CF00D857ED /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4182BCCD5CF00D857ED /* CHCallback.swift */; };
 		5B54B41C2BCCD5CF00D857ED /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4192BCCD5CF00D857ED /* CHCentralManager.swift */; };
+		5BBAA37B2C3FC61400704809 /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37A2C3FC61400704809 /* CHPeripheralManager.swift */; };
+		5BBAA37D2C40CD3F00704809 /* CHOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37C2C40CD3F00704809 /* CHOptions.swift */; };
+		5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37E2C40FC7D00704809 /* CHExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		5B54B4172BCCD5CF00D857ED /* CHBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBluetooth.swift; sourceTree = "<group>"; };
 		5B54B4182BCCD5CF00D857ED /* CHCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCallback.swift; sourceTree = "<group>"; };
 		5B54B4192BCCD5CF00D857ED /* CHCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCentralManager.swift; sourceTree = "<group>"; };
+		5BBAA37A2C3FC61400704809 /* CHPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
+		5BBAA37C2C40CD3F00704809 /* CHOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOptions.swift; sourceTree = "<group>"; };
+		5BBAA37E2C40FC7D00704809 /* CHExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 				5B54B4162BCCD59B00D857ED /* BLE */,
 				5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */,
 				5B54B3ED2BCCD56900D857ED /* ContentView.swift */,
+				5BBAA37E2C40FC7D00704809 /* CHExample.swift */,
 				5B54B3EF2BCCD56B00D857ED /* Assets.xcassets */,
 				5B54B3F12BCCD56B00D857ED /* CHBluetooth.entitlements */,
 				5B54B3F22BCCD56B00D857ED /* Preview Content */,
@@ -141,7 +148,9 @@
 			children = (
 				5B54B4172BCCD5CF00D857ED /* CHBluetooth.swift */,
 				5B54B4182BCCD5CF00D857ED /* CHCallback.swift */,
+				5BBAA37C2C40CD3F00704809 /* CHOptions.swift */,
 				5B54B4192BCCD5CF00D857ED /* CHCentralManager.swift */,
+				5BBAA37A2C3FC61400704809 /* CHPeripheralManager.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -210,7 +219,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					5B54B3E72BCCD56900D857ED = {
 						CreatedOnToolsVersion = 15.2;
@@ -276,10 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BBAA37B2C3FC61400704809 /* CHPeripheralManager.swift in Sources */,
+				5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */,
 				5B54B41A2BCCD5CF00D857ED /* CHBluetooth.swift in Sources */,
 				5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */,
 				5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */,
 				5B54B41B2BCCD5CF00D857ED /* CHCallback.swift in Sources */,
+				5BBAA37D2C40CD3F00704809 /* CHOptions.swift in Sources */,
 				5B54B41C2BCCD5CF00D857ED /* CHCentralManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +363,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -412,6 +425,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -439,6 +453,7 @@
 				CODE_SIGN_ENTITLEMENTS = CHBluetooth/CHBluetooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CHBluetooth/Preview Content\"";
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -477,6 +492,7 @@
 				CODE_SIGN_ENTITLEMENTS = CHBluetooth/CHBluetooth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"CHBluetooth/Preview Content\"";
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -514,6 +530,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -537,6 +554,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -559,6 +577,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -581,6 +600,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = VY8W9X22Y4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;

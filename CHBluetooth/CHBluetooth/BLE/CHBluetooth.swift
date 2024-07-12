@@ -12,43 +12,46 @@ import CoreBluetooth
 public class CHBluetooth {
     
     /// 单例
-    static var instance = CHBluetooth()
+    static let instance = CHBluetooth()
     
     /// 中心设备
     lazy var central: CHCentralManager = {
         let options = [CBCentralManagerOptionShowPowerAlertKey: true, CBCentralManagerOptionRestoreIdentifierKey: "CHBluetoothRestore"]
-        return CHCentralManager(options: options)
+        let central = CHCentralManager(options: options)
+        central.callback = callback
+        return central
     }()
     
-    private var callback: CHCallback?
+    /// 外设模式
+    lazy var peripheral: CHPeripheralManager = {
+        let peripheral = CHPeripheralManager()
+        peripheral.callback = callback
+        return peripheral
+    }()
     
-    private var options: CHOptions?
+    private var callback: CHCallback? = CHCallback()
     
-    required public init() {
-        callback = CHCallback()
-        central.callback = callback
-        options = CHOptions()
+    private var options: CHOptions? = CHOptions()
+}
+
+//MARK: - 中心设备
+extension CHBluetooth {
+    /// 扫描参数配置
+    public func optionsConfig(scanOptions: Dictionary<String, Any>? = nil, connectOptions: Dictionary<String, Any>? = nil, scanServices: Array<CBUUID>? = nil, discoverServices: Array<CBUUID>? = nil, discoverCharacteristics: Array<CBUUID>? = nil) -> Void {
+        options?.scanForPeripheralsWithOptions = scanOptions
+        options?.connectPeripheralWithOptions = connectOptions
+        options?.scanForPeripheralsWithServices = scanServices
+        options?.discoverWithServices = discoverServices
+        options?.discoverWithCharacteristics = discoverCharacteristics
         central.options = options
     }
     
-    /// 扫描参数配置
-    public func optionsConfig(scanOptions: Dictionary<String, Any>? = nil, connectOptions: Dictionary<String, Any>? = nil, scanServices: Array<CBUUID>? = nil, discoverServices: Array<CBUUID>? = nil, discoverCharacteristics: Array<CBUUID>? = nil) -> Void {
-        if scanOptions != nil {
-            options?.scanForPeripheralsWithOptions = scanOptions
+    /// 获取系统正在连接外设
+    public func retrieveConnectedPeripherals() -> Array<CBPeripheral>? {
+        if options?.scanForPeripheralsWithServices != nil {
+            return central.retrieveConnectedPeripherals((options?.scanForPeripheralsWithServices)!)
         }
-        if connectOptions != nil {
-            options?.connectPeripheralWithOptions = connectOptions
-        }
-        if scanServices != nil {
-            options?.scanForPeripheralsWithServices = scanServices
-        }
-        if discoverServices != nil {
-            options?.discoverWithServices = discoverServices
-        }
-        if discoverCharacteristics != nil {
-            options?.discoverWithCharacteristics = discoverCharacteristics
-        }
-        central.options = options
+        return nil
     }
     
     /// 开始扫描
@@ -92,11 +95,11 @@ public class CHBluetooth {
     
     /// 写入特征值
     /// - Parameters:
-    ///   - value: 写入内容
     ///   - peripheral: 外设设备
+    ///   - value: 写入内容
     ///   - characteristic: 特征值
     ///   - type: CBCharacteristicWriteType
-    public func writeValue(_ value: Data, _ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, type: CBCharacteristicWriteType = .withResponse) -> Void {
+    public func writeValue(_ peripheral: CBPeripheral, _ value: Data, _ characteristic: CBCharacteristic, type: CBCharacteristicWriteType = .withResponse) -> Void {
         peripheral.writeValue(value, for: characteristic, type: type)
     }
     
@@ -170,18 +173,6 @@ public class CHBluetooth {
         self.callback?.cancelPeripheralsConnectionBlock = callback
     }
     
-    /// 获取系统连接外设
-    public func retrieveConnectedPeripherals() -> Array<CBPeripheral> {
-        if central.connectedPeripherals.count == 0, options?.scanForPeripheralsWithServices != nil {
-            let connectedPeripherals = central.retrieveConnectedPeripherals((options?.scanForPeripheralsWithServices)!)
-            for peripheral in connectedPeripherals {
-                cancelPeripheralConnection(peripheral)
-            }
-            return connectedPeripherals
-        }
-        return []
-    }
-    
     /// 监听特征值返回
     /// - Parameters:
     ///   - peripheral: 外设设备
@@ -204,26 +195,64 @@ public class CHBluetooth {
     
 }
 
-//MARK: - 扫描参数
-public class CHOptions {
+//MARK: - 外设模式
+extension CHBluetooth {
     
-    /// 扫描设备参数
-    public var scanForPeripheralsWithOptions: Dictionary<String, Any>?
-    /// 连接设备参数
-    public var connectPeripheralWithOptions: Dictionary<String, Any>?
-    /// 扫描设备服务参数
-    public var scanForPeripheralsWithServices: Array<CBUUID>?
-    /// 发现服务参数
-    public var discoverWithServices: Array<CBUUID>?
-    /// 发现特征值参数
-    public var discoverWithCharacteristics: Array<CBUUID>?
-    
-    init(scanForPeripheralsWithOptions: Dictionary<String, Any>? = nil, connectPeripheralWithOptions: Dictionary<String, Any>? = nil, scanForPeripheralsWithServices: Array<CBUUID>? = nil, discoverWithServices: Array<CBUUID>? = nil, discoverWithCharacteristics: Array<CBUUID>? = nil) {
-        self.scanForPeripheralsWithOptions = scanForPeripheralsWithOptions
-        self.connectPeripheralWithOptions = connectPeripheralWithOptions
-        self.scanForPeripheralsWithServices = scanForPeripheralsWithServices
-        self.discoverWithServices = discoverWithServices
-        self.discoverWithCharacteristics = discoverWithCharacteristics
+    /// 生成特征值
+    public func makeCharacteristic(characteristicUUID: CBUUID, properties: CBCharacteristicProperties = [.read, .write, .notify], permissions: CBAttributePermissions = [.readable, .writeable], value: Data? = nil) -> CBCharacteristic {
+        return CBMutableCharacteristic(type: characteristicUUID, properties: properties, value: value, permissions: permissions)
+    }
+    /// 生成服务
+    public func makeService(uuid: String, characteristics: Array<CBCharacteristic>) -> CBMutableService {
+        let service = CBMutableService(type: CBUUID(string: uuid), primary: true)
+        service.characteristics = characteristics
+        return service
+    }
+    /// 添加服务
+    public func addService(services: Array<CBMutableService>) -> Void {
+        peripheral.addService(services)
+    }
+    /// 开始广播
+    public func startAdvertising(localName: String, serverUuids: Array<CBUUID>, manufacturerData: Data? = nil) -> Void {
+        if serverUuids.isEmpty {
+            return
+        }
+        peripheral.startAdvertising(localName: localName, uuids: serverUuids, manufacturerData: manufacturerData)
+    }
+    /// 停止广播
+    public func stopAdvertising() -> Void {
+        peripheral.stopAdvertising()
     }
     
+    public func peripheralModeDidUpdateState(_ callback: @escaping CHPeripheralModeDidUpdateStateBlock) -> Void {
+        self.callback?.peripheralModeDidUpdateStateBlock = callback
+    }
+    
+    public func peripheralModeDidAddService(_ callback: @escaping CHPeripheralModeDidAddService) -> Void {
+        self.callback?.peripheralModeDidAddService = callback
+    }
+    
+    public func peripheralModeDidStartAdvertising(_ callback: @escaping CHPeripheralModeDidStartAdvertising) -> Void {
+        self.callback?.peripheralModeDidStartAdvertising = callback
+    }
+    
+    public func peripheralModeDidReceiveReadRequest(_ callback: @escaping CHPeripheralModeDidReceiveReadRequest) -> Void {
+        self.callback?.peripheralModeDidReceiveReadRequest = callback
+    }
+    
+    public func peripheralModeDidReceiveWriteRequests(_ callback: @escaping CHPeripheralModeDidReceiveWriteRequests) -> Void {
+        self.callback?.peripheralModeDidReceiveWriteRequests = callback
+    }
+    
+    public func peripheralModeIsReadyToUpdateSubscribers(_ callback: @escaping CHPeripheralModeIsReadyToUpdateSubscribers) -> Void {
+        self.callback?.peripheralModeIsReadyToUpdateSubscribers = callback
+    }
+    
+    public func peripheralModeDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidSubscribeToCharacteristic) -> Void {
+        self.callback?.peripheralModeDidSubscribeToCharacteristic = callback
+    }
+    
+    public func peripheralModeDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidUnSubscribeToCharacteristic) -> Void {
+        self.callback?.peripheralModeDidUnSubscribeToCharacteristic = callback
+    }
 }

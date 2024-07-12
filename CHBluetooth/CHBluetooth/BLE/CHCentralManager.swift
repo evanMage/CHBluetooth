@@ -13,7 +13,7 @@ class CHCentralManager: NSObject {
     
     internal var centralManager: CBCentralManager!
     internal var scanTimeout = 10
-    internal var operationQueue = DispatchQueue(label: "CHQueue", qos: .userInitiated)
+    internal var operationQueue = DispatchQueue(label: "CH_Dispatch_Queue", qos: .userInitiated)
     internal var options: CHOptions?
     internal var callback: CHCallback?
     internal var connectedPeripherals: Dictionary<String, CBPeripheral> = Dictionary()
@@ -25,9 +25,9 @@ class CHCentralManager: NSObject {
         super.init()
         let backgroundModes: Array<String> = Bundle.main.infoDictionary?["UIBackgroundModes"] as? Array<String> ?? []
         if backgroundModes.contains("bluetooth-central") {
-            centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
+            centralManager = CBCentralManager(delegate: self, queue: operationQueue, options: options)
         } else {
-            centralManager = CBCentralManager(delegate: self, queue: nil)
+            centralManager = CBCentralManager(delegate: self, queue: operationQueue)
         }
     }
     
