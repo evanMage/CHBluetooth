@@ -25,9 +25,9 @@ class CHCentralManager: NSObject {
         super.init()
         let backgroundModes: Array<String> = Bundle.main.infoDictionary?["UIBackgroundModes"] as? Array<String> ?? []
         if backgroundModes.contains("bluetooth-central") {
-            centralManager = CBCentralManager(delegate: self, queue: operationQueue, options: options)
+            centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
         } else {
-            centralManager = CBCentralManager(delegate: self, queue: operationQueue)
+            centralManager = CBCentralManager(delegate: self, queue: nil)
         }
     }
     

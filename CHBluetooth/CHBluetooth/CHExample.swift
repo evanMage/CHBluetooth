@@ -8,9 +8,11 @@
 import Foundation
 import CoreBluetooth
 
-class CHExample {
+class CHExample: NSObject, ObservableObject {
     
     let bluetooth = CHBluetooth.instance
+    
+    @Published var scanPeripherals: Array<CBPeripheral> = []
     
     func centralSettings() -> Void {
         
@@ -19,8 +21,11 @@ class CHExample {
                 self.bluetooth.startScanPeripherals()
             }
         }
-        bluetooth.onDiscoverPeripherals { peripheral, advertisementData, rssi in
-            debugPrint("--- \(peripheral) - \(rssi)")
+        bluetooth.onDiscoverPeripherals { [self] peripheral, advertisementData, rssi in
+            if !scanPeripherals.contains(peripheral) {
+                scanPeripherals.append(peripheral)
+                print("Discovered: \(peripheral.name ?? "Unknown")")
+            }
         }
         bluetooth.onConnectedPeripheral { peripheral in
             
@@ -31,7 +36,7 @@ class CHExample {
         bluetooth.onDisconnect { peripheral, error in
             
         }
-        let sancOption: Dictionary<String, Any> = [CBCentralManagerScanOptionAllowDuplicatesKey: false, CBCentralManagerOptionShowPowerAlertKey: true]
+        let sancOption: Dictionary<String, Any> = [CBCentralManagerOptionShowPowerAlertKey: true]
         bluetooth.optionsConfig(scanOptions: sancOption)
     }
     

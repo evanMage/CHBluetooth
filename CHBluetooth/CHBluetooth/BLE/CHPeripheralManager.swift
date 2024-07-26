@@ -9,13 +9,19 @@ import CoreBluetooth
 
 class CHPeripheralManager: NSObject {
     
-    lazy var peripheralManager: CBPeripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+    private var peripheralManager: CBPeripheralManager!
     
-    var callback: CHCallback?
+    private var callback: CHCallback?
     
-    var services: Array<CBService> = []
+    private var services: Array<CBService> = []
     
     private var addServiceCount = 0
+    
+    init(callback: CHCallback? = nil) {
+        super.init()
+        self.callback = callback
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+    }
     
     func addService(_ services: Array<CBMutableService>) -> Void {
         self.services = services

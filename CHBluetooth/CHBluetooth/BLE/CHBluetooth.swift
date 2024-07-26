@@ -23,11 +23,7 @@ public class CHBluetooth {
     }()
     
     /// 外设模式
-    lazy var peripheral: CHPeripheralManager = {
-        let peripheral = CHPeripheralManager()
-        peripheral.callback = callback
-        return peripheral
-    }()
+    private var peripheral: CHPeripheralManager?
     
     private var callback: CHCallback? = CHCallback()
     
@@ -210,18 +206,24 @@ extension CHBluetooth {
     }
     /// 添加服务
     public func addService(services: Array<CBMutableService>) -> Void {
-        peripheral.addService(services)
+        peripheral?.addService(services)
     }
+    
+    public func startPeripheralManager() -> Void {
+        let peripheral = CHPeripheralManager(callback: callback)
+        self.peripheral = peripheral
+    }
+    
     /// 开始广播
     public func startAdvertising(localName: String, serverUuids: Array<CBUUID>, manufacturerData: Data? = nil) -> Void {
         if serverUuids.isEmpty {
             return
         }
-        peripheral.startAdvertising(localName: localName, uuids: serverUuids, manufacturerData: manufacturerData)
+        peripheral?.startAdvertising(localName: localName, uuids: serverUuids, manufacturerData: manufacturerData)
     }
     /// 停止广播
     public func stopAdvertising() -> Void {
-        peripheral.stopAdvertising()
+        peripheral?.stopAdvertising()
     }
     
     public func peripheralModeDidUpdateState(_ callback: @escaping CHPeripheralModeDidUpdateStateBlock) -> Void {
