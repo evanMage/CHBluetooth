@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5B2C538F350077C88B /* DetailView.swift */; };
 		5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */; };
 		5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B3ED2BCCD56900D857ED /* ContentView.swift */; };
 		5B54B3F02BCCD56B00D857ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B54B3EF2BCCD56B00D857ED /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B3C0B5B2C538F350077C88B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5B54B3E82BCCD56900D857ED /* CHBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothApp.swift; sourceTree = "<group>"; };
 		5B54B3ED2BCCD56900D857ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				5B54B4162BCCD59B00D857ED /* BLE */,
 				5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */,
 				5B54B3ED2BCCD56900D857ED /* ContentView.swift */,
+				5B3C0B5B2C538F350077C88B /* DetailView.swift */,
 				5BBAA37E2C40FC7D00704809 /* CHExample.swift */,
 				5B54B3EF2BCCD56B00D857ED /* Assets.xcassets */,
 				5B54B3F12BCCD56B00D857ED /* CHBluetooth.entitlements */,
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BBAA37B2C3FC61400704809 /* CHPeripheralManager.swift in Sources */,
+				5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */,
 				5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */,
 				5B54B41A2BCCD5CF00D857ED /* CHBluetooth.swift in Sources */,
 				5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */,

@@ -17,7 +17,7 @@ class CHCentralManager: NSObject {
     internal var options: CHOptions?
     internal var callback: CHCallback?
     internal var connectedPeripherals: Dictionary<String, CBPeripheral> = Dictionary()
-    internal var notifyDcit: Dictionary<String, Any> = Dictionary()
+    internal var notifyDict: Dictionary<String, Any> = Dictionary()
     private lazy var discoverPeripherals: Array<CBPeripheral> = Array()
     
     /// 初始化
@@ -80,8 +80,8 @@ extension CHCentralManager: CBPeripheralDelegate {
     }
     /// 读取Characteristics的值
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if notifyDcit[characteristic.uuid.uuidString] != nil {
-            guard let notifyBlock = notifyDcit[characteristic.uuid.uuidString] as? ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) else {
+        if notifyDict[characteristic.uuid.uuidString] != nil {
+            guard let notifyBlock = notifyDict[characteristic.uuid.uuidString] as? ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) else {
                 return
             }
             debugPrint("iOS 特征值监听返回  ------------ \(characteristic.uuid.uuidString)")
@@ -178,11 +178,11 @@ extension CHCentralManager {
     
     /// 监听
     public func notify(_ characteristic: CBCharacteristic, _ block: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
-        notifyDcit.updateValue(block, forKey: characteristic.uuid.uuidString)
+        notifyDict.updateValue(block, forKey: characteristic.uuid.uuidString)
     }
     
     public func removeNotify(_ characteristic: CBCharacteristic) -> Void {
-        notifyDcit.removeValue(forKey: characteristic.uuid.uuidString)
+        notifyDict.removeValue(forKey: characteristic.uuid.uuidString)
     }
     
 }

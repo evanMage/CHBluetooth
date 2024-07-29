@@ -9,22 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var example = CHExample()
-    
+    @EnvironmentObject var example: CHExample
+//    @StateObject var example2: CHExample2 = CHExample2()
+
     var body: some View {
-        VStack {
+        NavigationStack {
             List(example.scanPeripherals, id: \.self) { peripheral in
                 Section {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(peripheral.name ?? "未命名设备")
-                        Text(peripheral.identifier.uuidString)
-                            .font(.system(size: 12))
+                    NavigationLink {
+                        DetailView(peripheral: peripheral)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(peripheral.name ?? "未命名设备")
+                            if peripheral.state == .connected {
+                                Text("已连接")
+                                    .foregroundColor(.red)
+                            }
+                            Text(peripheral.identifier.uuidString)
+                                .font(.system(size: 12))
+                        }
                     }
                 }
             }
+            .navigationTitle("首页")
         }
         .onAppear(perform: {
             example.centralSettings()
+//            example2.centralSettings()
         })
     }
 }
