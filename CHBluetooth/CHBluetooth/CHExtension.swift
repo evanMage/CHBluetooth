@@ -1,6 +1,4 @@
-//
-//  String+Extension.swift
-//  Ottai Watch App
+
 //
 //  Created by evan on 2024/5/27.
 //
@@ -19,6 +17,11 @@ extension String {
     /// 16进制字符串转Int
     var hexToInt: Int? {
         return Int(self, radix: 16)
+    }
+    
+    /// 字符串-->16进制字符串 --> Data
+    var stringToData: Data? {
+        return self.data(using: .utf8)?.hexString.hexToData
     }
     
     /// 16进制字符串转成Data
@@ -54,9 +57,25 @@ extension Data {
         }.joined()
         return md5Str
     }
-    
+    /// 16进制字符串
     var hexString: String {
         return self.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    /// 16进制data转utfStr
+    var utf8Str: String? {
+        let hex = self.hexString
+        var bytes = [UInt8](),
+            startIndex = hex.startIndex
+        while startIndex < hex.endIndex {
+            let endIndex = hex.index(startIndex, offsetBy: 2)
+            if let byte = UInt8(String(hex[startIndex..<endIndex]), radix: 16) {
+                bytes.append(byte)
+            }
+            startIndex = endIndex
+        }
+        let data = Data(bytes)
+        return String(data: data, encoding: .utf8)
     }
     
     var sha256HexString: String {

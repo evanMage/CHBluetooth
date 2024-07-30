@@ -22,11 +22,17 @@ struct DetailView: View {
                             Section {
                                 if let characteristics = service.characteristics {
                                     ForEach(characteristics, id: \.self) { characteristic in
-                                        Text("\(characteristic.uuid.uuidString)")
-                                            .font(.system(size: 15))
-                                        Text(example.properties(characteristic: characteristic).joined(separator: " - "))
-                                            .font(.system(size: 14))
-                                            .foregroundColor(.green)
+                                        NavigationLink {
+                                            CharacteristicView(peripheral: peripheral, characteristic: characteristic)
+                                        } label: {
+                                            VStack(alignment: .leading, spacing: 5) {
+                                                Text("\(characteristic.uuid.uuidString)")
+                                                    .font(.system(size: 15))
+                                                Text(example.properties(characteristic: characteristic).joined(separator: " - "))
+                                                    .font(.system(size: 14))
+                                                    .foregroundColor(.green)
+                                            }
+                                        }
                                     }
                                 }
                             } header: {
@@ -42,5 +48,74 @@ struct DetailView: View {
                 example.startConnect(peripheral)
             }
         })
+    }
+}
+
+enum CHProperties: String {
+    case read
+    case write
+    case notify
+}
+
+struct CharacteristicView: View {
+    
+    let peripheral: CBPeripheral
+    let characteristic: CBCharacteristic
+    
+    @State var readValue = ""
+    @State var writeValue = ""
+    @State var notifyValue = ""
+    
+    var body: some View {
+        VStack {
+            if characteristic.properties.contains(.read) {
+                Button("read") {
+                    CHBluetooth.instance.onReadValueForCharacteristic { peripheral, characteristic, error in
+                        if let data = characteristic.value {
+                            readValue = data.utf8Str ?? ""
+                            print(readValue)
+                        }
+                    }
+                    CHBluetooth.instance.readValue(peripheral, characteristic)
+                }
+                Text(readValue)
+            }
+            if characteristic.properties.contains(.write) {
+                TextField(text: $writeValue) {
+                    Text("write")
+                }
+                .onSubmit {
+                    if let value = writeValue.stringToData {
+                        CHBluetooth.instance.writeValue(peripheral, value, characteristic)
+                    }
+                }
+            }
+            if characteristic.properties.contains(.notify) || characteristic.properties.contains(.indicate) {
+                Button("notify") {
+                    CHBluetooth.instance.notify(peripheral, characteristic) { peripheral, characteristic, error in
+                        if let data = characteristic.value {
+                            notifyValue = data.utf8Str ?? ""
+                            print(notifyValue)
+                        }
+                    }
+                }
+                Text(notifyValue)
+            }
+        }
+        .padding()
+    }
+    
+    private func properties() -> [CHProperties] {
+        var result: [CHProperties] = []
+        if characteristic.properties.contains(.read) {
+            result.append(.read)
+        }
+        if characteristic.properties.contains(.write) {
+            result.append(.write)
+        }
+        if characteristic.properties.contains(.notify) || characteristic.properties.contains(.indicate) {
+            result.append(.notify)
+        }
+        return result
     }
 }

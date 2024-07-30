@@ -195,7 +195,7 @@ extension CHBluetooth {
 extension CHBluetooth {
     
     /// 生成特征值
-    public func makeCharacteristic(characteristicUUID: CBUUID, properties: CBCharacteristicProperties = [.read, .write, .notify], permissions: CBAttributePermissions = [.readable, .writeable], value: Data? = nil) -> CBCharacteristic {
+    public func makeCharacteristic(characteristicUUID: CBUUID, properties: CBCharacteristicProperties = [.read, .write, .notify], permissions: CBAttributePermissions = [.readable, .writeable], value: Data? = nil) -> CBMutableCharacteristic {
         return CBMutableCharacteristic(type: characteristicUUID, properties: properties, value: value, permissions: permissions)
     }
     /// 生成服务
