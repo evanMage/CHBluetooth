@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5B2C538F350077C88B /* DetailView.swift */; };
+		5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */; };
+		5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */; };
 		5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */; };
 		5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B3ED2BCCD56900D857ED /* ContentView.swift */; };
 		5B54B3F02BCCD56B00D857ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B54B3EF2BCCD56B00D857ED /* Assets.xcassets */; };
@@ -42,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		5B3C0B5B2C538F350077C88B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeripheralExample.swift; sourceTree = "<group>"; };
+		5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHExtension.swift; sourceTree = "<group>"; };
+		5B3C0B612C5880650077C88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5B54B3E82BCCD56900D857ED /* CHBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothApp.swift; sourceTree = "<group>"; };
 		5B54B3ED2BCCD56900D857ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,11 +114,14 @@
 		5B54B3EA2BCCD56900D857ED /* CHBluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				5B3C0B612C5880650077C88B /* Info.plist */,
 				5B54B4162BCCD59B00D857ED /* BLE */,
 				5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */,
 				5B54B3ED2BCCD56900D857ED /* ContentView.swift */,
 				5B3C0B5B2C538F350077C88B /* DetailView.swift */,
+				5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */,
 				5BBAA37E2C40FC7D00704809 /* CHExample.swift */,
+				5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */,
 				5B54B3EF2BCCD56B00D857ED /* Assets.xcassets */,
 				5B54B3F12BCCD56B00D857ED /* CHBluetooth.entitlements */,
 				5B54B3F22BCCD56B00D857ED /* Preview Content */,
@@ -293,8 +301,10 @@
 				5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */,
 				5B54B41A2BCCD5CF00D857ED /* CHBluetooth.swift in Sources */,
 				5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */,
+				5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */,
 				5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */,
 				5B54B41B2BCCD5CF00D857ED /* CHCallback.swift in Sources */,
+				5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */,
 				5BBAA37D2C40CD3F00704809 /* CHOptions.swift in Sources */,
 				5B54B41C2BCCD5CF00D857ED /* CHCentralManager.swift in Sources */,
 			);
@@ -463,6 +473,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CHBluetooth/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "需要蓝牙权限";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "需要蓝牙权限";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -504,6 +515,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CHBluetooth/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "需要蓝牙权限";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "需要蓝牙权限";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

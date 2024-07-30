@@ -27,7 +27,7 @@ class CHExample: NSObject, ObservableObject {
         bluetooth.onDiscoverPeripherals { [self] peripheral, advertisementData, rssi in
             if !scanPeripherals.contains(peripheral) {
                 scanPeripherals.append(peripheral)
-                print("--- 1 --- Discovered: \(peripheral.name ?? "Unknown")")
+//                print("--- 1 --- Discovered: \(peripheral.name ?? "Unknown")")
             }
         }
         bluetooth.onConnectedPeripheral { [self] peripheral in

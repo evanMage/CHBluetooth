@@ -60,27 +60,25 @@ extension CHPeripheralManager: CBPeripheralManagerDelegate {
     /// Adding Services
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: (any Error)?) {
         addServiceCount += 1
-        print("添加service： \(service)")
         callback?.peripheralModeDidAddService?(peripheral, service, error)
     }
-    /// Advertising Peripheral Data
+    /// 开始广播
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: (any Error)?) {
-        print("开始广播：\(peripheral)")
         callback?.peripheralModeDidStartAdvertising?(peripheral, error)
     }
-    /// Receiving Read Requests
+    /// 读请求
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         callback?.peripheralModeDidReceiveReadRequest?(peripheral, request)
     }
-    /// Receiving  Write Requests
+    /// 写请求
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         callback?.peripheralModeDidReceiveWriteRequests?(peripheral, requests)
     }
-    /// Tells the delegate that a remote central device subscribed to a characteristic’s value.
+    /// 接收订阅通知
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         callback?.peripheralModeDidSubscribeToCharacteristic?(peripheral, central, characteristic)
     }
-    /// Tells the delegate that a remote central device unsubscribed from a characteristic’s value.
+    /// 接收订阅取消
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
         callback?.peripheralModeDidUnSubscribeToCharacteristic?(peripheral, central, characteristic)
     }

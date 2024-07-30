@@ -11,11 +11,12 @@ import SwiftUI
 struct CHBluetoothApp: App {
     
     @StateObject var example = CHExample()
-    
+    @StateObject var peripheralExample = CHPeripheralExample.manager
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(example)
+                .environmentObject(peripheralExample)
         }
     }
 }
