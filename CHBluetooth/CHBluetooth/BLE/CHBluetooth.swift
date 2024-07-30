@@ -230,30 +230,44 @@ extension CHBluetooth {
         self.callback?.peripheralModeDidUpdateStateBlock = callback
     }
     
+    /// 增加service
+    /// - Parameter callback: CHPeripheralModeDidAddService
     public func peripheralModeDidAddService(_ callback: @escaping CHPeripheralModeDidAddService) -> Void {
         self.callback?.peripheralModeDidAddService = callback
     }
     
+    /// 开始广播
+    /// - Parameter callback: CHPeripheralModeDidStartAdvertising
     public func peripheralModeDidStartAdvertising(_ callback: @escaping CHPeripheralModeDidStartAdvertising) -> Void {
         self.callback?.peripheralModeDidStartAdvertising = callback
     }
     
+    /// 读取请求
+    /// - Parameter callback: CHPeripheralModeDidReceiveReadRequest
     public func peripheralModeDidReceiveReadRequest(_ callback: @escaping CHPeripheralModeDidReceiveReadRequest) -> Void {
         self.callback?.peripheralModeDidReceiveReadRequest = callback
     }
     
+    /// 写入请求
+    /// - Parameter callback: CHPeripheralModeDidReceiveWriteRequests
     public func peripheralModeDidReceiveWriteRequests(_ callback: @escaping CHPeripheralModeDidReceiveWriteRequests) -> Void {
         self.callback?.peripheralModeDidReceiveWriteRequests = callback
     }
     
+    /// 接收订阅通知
+    /// - Parameter callback: CHPeripheralModeIsReadyToUpdateSubscribers
     public func peripheralModeIsReadyToUpdateSubscribers(_ callback: @escaping CHPeripheralModeIsReadyToUpdateSubscribers) -> Void {
         self.callback?.peripheralModeIsReadyToUpdateSubscribers = callback
     }
     
+    /// 取消订阅通知
+    /// - Parameter callback: CHPeripheralModeDidSubscribeToCharacteristic
     public func peripheralModeDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidSubscribeToCharacteristic) -> Void {
         self.callback?.peripheralModeDidSubscribeToCharacteristic = callback
     }
     
+    /// 更新特征值
+    /// - Parameter callback: CHPeripheralModeDidUnSubscribeToCharacteristic
     public func peripheralModeDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidUnSubscribeToCharacteristic) -> Void {
         self.callback?.peripheralModeDidUnSubscribeToCharacteristic = callback
     }

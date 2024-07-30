@@ -7,6 +7,7 @@
 
 import CoreBluetooth
 
+/// 外设模式
 class CHPeripheralManager: NSObject {
     
     private var peripheralManager: CBPeripheralManager!
