@@ -12,8 +12,6 @@ import CoreBluetooth
 class CHCentralManager: NSObject {
     
     internal var centralManager: CBCentralManager!
-    internal var scanTimeout = 10
-    internal var operationQueue = DispatchQueue(label: "CH_Dispatch_Queue", qos: .userInitiated)
     internal var options: CHOptions?
     internal var callback: CHCallback?
     internal var connectedPeripherals: Dictionary<String, CBPeripheral> = Dictionary()

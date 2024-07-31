@@ -23,6 +23,8 @@
 		5BBAA37B2C3FC61400704809 /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37A2C3FC61400704809 /* CHPeripheralManager.swift */; };
 		5BBAA37D2C40CD3F00704809 /* CHOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37C2C40CD3F00704809 /* CHOptions.swift */; };
 		5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37E2C40FC7D00704809 /* CHExample.swift */; };
+		5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */; };
+		5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282492C5A14DA000BF71A /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		5BBAA37A2C3FC61400704809 /* CHPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
 		5BBAA37C2C40CD3F00704809 /* CHOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOptions.swift; sourceTree = "<group>"; };
 		5BBAA37E2C40FC7D00704809 /* CHExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExample.swift; sourceTree = "<group>"; };
+		5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHBluetooth.podspec; sourceTree = "<group>"; };
+		5BF282492C5A14DA000BF71A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 		5B54B3DF2BCCD56900D857ED = {
 			isa = PBXGroup;
 			children = (
+				5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */,
+				5BF282492C5A14DA000BF71A /* LICENSE */,
 				5B54B3EA2BCCD56900D857ED /* CHBluetooth */,
 				5B54B3FC2BCCD56B00D857ED /* CHBluetoothTests */,
 				5B54B4062BCCD56B00D857ED /* CHBluetoothUITests */,
@@ -270,7 +276,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */,
 				5B54B3F42BCCD56B00D857ED /* Preview Assets.xcassets in Resources */,
+				5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */,
 				5B54B3F02BCCD56B00D857ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
