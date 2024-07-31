@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3C0B612C5880650077C88B /* Info.plist */,
-				5B54B4162BCCD59B00D857ED /* Source */,
+				5BF282562C5A203F000BF71A /* BLE */,
 				5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */,
 				5B54B3ED2BCCD56900D857ED /* ContentView.swift */,
 				5B3C0B5B2C538F350077C88B /* DetailView.swift */,
@@ -165,18 +165,10 @@
 			path = CHBluetoothUITests;
 			sourceTree = "<group>";
 		};
-		5B54B4162BCCD59B00D857ED /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				5BF2825C2C5A20E2000BF71A /* CHBlueKit.swift */,
-				5BF282562C5A203F000BF71A /* BLE */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
 		5BF282562C5A203F000BF71A /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				5BF2825C2C5A20E2000BF71A /* CHBlueKit.swift */,
 				5BF282512C5A203F000BF71A /* CHBluetooth.swift */,
 				5BF282522C5A203F000BF71A /* CHCallback.swift */,
 				5BF282532C5A203F000BF71A /* CHCentralManager.swift */,
