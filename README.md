@@ -3,17 +3,6 @@
 
 蓝牙中心模式和外设模式封装
 
-## Requirements
-
-## Installation
-
-CHBluetooth is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```
-pod 'CHBluetooth'
-```
-
 ## Author
 
 evanMage
