@@ -19,6 +19,6 @@ Pod::Spec.new do |spec|
   
   spec.source       = { :git => "https://github.com/evanMage/CHBluetooth.git", :tag => spec.version }
 
-  spec.source_files = "CHBluetooth/BLE/*.swift"
+  spec.source_files = "CHBluetooth/Source/**/*.swift"
 
 end
