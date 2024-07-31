@@ -25,6 +25,7 @@
 		5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37E2C40FC7D00704809 /* CHExample.swift */; };
 		5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */; };
 		5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282492C5A14DA000BF71A /* LICENSE */; };
+		5BF282502C5A1BD4000BF71A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2824F2C5A1BD4000BF71A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		5BBAA37E2C40FC7D00704809 /* CHExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExample.swift; sourceTree = "<group>"; };
 		5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHBluetooth.podspec; sourceTree = "<group>"; };
 		5BF282492C5A14DA000BF71A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5BF2824F2C5A1BD4000BF71A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */,
 				5BF282492C5A14DA000BF71A /* LICENSE */,
+				5BF2824F2C5A1BD4000BF71A /* README.md */,
 				5B54B3EA2BCCD56900D857ED /* CHBluetooth */,
 				5B54B3FC2BCCD56B00D857ED /* CHBluetoothTests */,
 				5B54B4062BCCD56B00D857ED /* CHBluetoothUITests */,
@@ -278,6 +281,7 @@
 			files = (
 				5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */,
 				5B54B3F42BCCD56B00D857ED /* Preview Assets.xcassets in Resources */,
+				5BF282502C5A1BD4000BF71A /* README.md in Resources */,
 				5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */,
 				5B54B3F02BCCD56B00D857ED /* Assets.xcassets in Resources */,
 			);
