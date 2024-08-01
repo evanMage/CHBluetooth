@@ -12,10 +12,10 @@ import CoreBluetooth
 public class CHBluetooth {
     
     /// 单例
-    static let instance = CHBluetooth()
+    static let sharedBluetooth = CHBluetooth()
     
     /// 中心设备
-    lazy var central: CHCentralManager = {
+    lazy private var central: CHCentralManager = {
         let options = [CBCentralManagerOptionShowPowerAlertKey: true, CBCentralManagerOptionRestoreIdentifierKey: "CHBluetoothRestore"]
         let central = CHCentralManager(options: options)
         central.callback = callback

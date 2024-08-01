@@ -70,13 +70,13 @@ struct CharacteristicView: View {
         VStack {
             if characteristic.properties.contains(.read) {
                 Button("read") {
-                    CHBluetooth.instance.onReadValueForCharacteristic { peripheral, characteristic, error in
+                    CHBluetooth.sharedBluetooth.onReadValueForCharacteristic { peripheral, characteristic, error in
                         if let data = characteristic.value {
                             readValue = data.utf8Str ?? ""
                             print(readValue)
                         }
                     }
-                    CHBluetooth.instance.readValue(peripheral, characteristic)
+                    CHBluetooth.sharedBluetooth.readValue(peripheral, characteristic)
                 }
                 Text(readValue)
             }
@@ -84,15 +84,17 @@ struct CharacteristicView: View {
                 TextField(text: $writeValue) {
                     Text("write")
                 }
+                .padding()
+                .textFieldStyle(.roundedBorder)
                 .onSubmit {
                     if let value = writeValue.stringToData {
-                        CHBluetooth.instance.writeValue(peripheral, value, characteristic)
+                        CHBluetooth.sharedBluetooth.writeValue(peripheral, value, characteristic)
                     }
                 }
             }
             if characteristic.properties.contains(.notify) || characteristic.properties.contains(.indicate) {
                 Button("notify") {
-                    CHBluetooth.instance.notify(peripheral, characteristic) { peripheral, characteristic, error in
+                    CHBluetooth.sharedBluetooth.notify(peripheral, characteristic) { peripheral, characteristic, error in
                         if let data = characteristic.value {
                             notifyValue = data.utf8Str ?? ""
                             print(notifyValue)
@@ -101,6 +103,7 @@ struct CharacteristicView: View {
                 }
                 Text(notifyValue)
             }
+            Spacer()
         }
         .padding()
     }

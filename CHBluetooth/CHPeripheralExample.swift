@@ -11,7 +11,7 @@ import CoreBluetooth
 class CHPeripheralExample: NSObject, ObservableObject {
     
     static let manager = CHPeripheralExample()
-    private let bluetooth = CHBluetooth.instance
+    private let bluetooth = CHBluetooth.sharedBluetooth
      
     private var peripheral: CBPeripheralManager?
     private var notifyCharacteristic: CBMutableCharacteristic?

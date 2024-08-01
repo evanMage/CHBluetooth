@@ -10,7 +10,7 @@ import CoreBluetooth
 
 class CHExample: NSObject, ObservableObject {
     
-    let bluetooth = CHBluetooth.instance
+    let bluetooth = CHBluetooth.sharedBluetooth
     
     @Published var scanPeripherals: Array<CBPeripheral> = []
     @Published var discoverCharacteristics: Dictionary<String, Array<CBService>> = [:]
