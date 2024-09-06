@@ -16,7 +16,7 @@ class CHCentralManager: NSObject {
     internal var callback: CHCallback?
     internal var connectedPeripherals: Dictionary<String, CBPeripheral> = Dictionary()
     internal var notifyDict: Dictionary<String, Any> = Dictionary()
-    private lazy var discoverPeripherals: Array<CBPeripheral> = Array()
+    private lazy var discoverPeripherals: Set<CBPeripheral> = Set()
     
     /// 初始化
     public required init(options: Dictionary<String, Any>? = nil) {
@@ -38,7 +38,7 @@ extension CHCentralManager: CBCentralManagerDelegate {
     }
     /// 发现外设设备
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        discoverPeripherals.append(peripheral)
+        discoverPeripherals.insert(peripheral)
         callback?.discoverPeripheralsBlock?(peripheral, advertisementData, RSSI)
     }
     /// 连接外设成功
@@ -131,7 +131,7 @@ extension CHCentralManager {
     }
     
     /// 停止扫描设备
-    public func stopScanningPeripherals() -> Void {
+    public func stopScanningPeripherals() -> Void { 
         centralManager.stopScan()
     }
     

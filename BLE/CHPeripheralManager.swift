@@ -10,7 +10,7 @@ import CoreBluetooth
 /// 外设模式
 class CHPeripheralManager: NSObject {
     
-    private var peripheralManager: CBPeripheralManager!
+    private var peripheralManager: CBPeripheralManager?
     
     private var callback: CHCallback?
     
@@ -27,12 +27,12 @@ class CHPeripheralManager: NSObject {
     func addService(_ services: Array<CBMutableService>) -> Void {
         self.services = services
         for service in services {
-            peripheralManager.add(service)
+            peripheralManager?.add(service)
         }
     }
     
     func startAdvertising(localName: String, uuids: Array<CBUUID>, manufacturerData: Data? = nil) -> Void {
-        if peripheralManager.state != .poweredOn, addServiceCount != services.count {
+        if peripheralManager?.state != .poweredOn, addServiceCount != services.count {
             return
         }
         var uuids: Array<CBUUID> = []
@@ -43,11 +43,11 @@ class CHPeripheralManager: NSObject {
         if manufacturerData != nil {
             advertisementData[CBAdvertisementDataManufacturerDataKey] = manufacturerData
         }
-        peripheralManager.startAdvertising(advertisementData)
+        peripheralManager?.startAdvertising(advertisementData)
     }
     
     func stopAdvertising() -> Void {
-        peripheralManager.stopAdvertising()
+        peripheralManager?.stopAdvertising()
     }
     
 }

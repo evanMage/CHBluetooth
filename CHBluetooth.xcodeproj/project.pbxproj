@@ -18,15 +18,15 @@
 		5B54B4082BCCD56B00D857ED /* CHBluetoothUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4072BCCD56B00D857ED /* CHBluetoothUITests.swift */; };
 		5B54B40A2BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4092BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift */; };
 		5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37E2C40FC7D00704809 /* CHExample.swift */; };
+		5BCD25212C8B16AF00E3E214 /* CHBlueKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */; };
+		5BCD25222C8B16AF00E3E214 /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */; };
+		5BCD25232C8B16AF00E3E214 /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */; };
+		5BCD25242C8B16AF00E3E214 /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */; };
+		5BCD25252C8B16AF00E3E214 /* CHOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251E2C8B16AF00E3E214 /* CHOptions.swift */; };
+		5BCD25262C8B16AF00E3E214 /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */; };
 		5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */; };
 		5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282492C5A14DA000BF71A /* LICENSE */; };
 		5BF282502C5A1BD4000BF71A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2824F2C5A1BD4000BF71A /* README.md */; };
-		5BF282572C5A203F000BF71A /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF282512C5A203F000BF71A /* CHBluetooth.swift */; };
-		5BF282582C5A203F000BF71A /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF282522C5A203F000BF71A /* CHCallback.swift */; };
-		5BF282592C5A203F000BF71A /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF282532C5A203F000BF71A /* CHCentralManager.swift */; };
-		5BF2825A2C5A203F000BF71A /* CHOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF282542C5A203F000BF71A /* CHOptions.swift */; };
-		5BF2825B2C5A203F000BF71A /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF282552C5A203F000BF71A /* CHPeripheralManager.swift */; };
-		5BF2825D2C5A20E2000BF71A /* CHBlueKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF2825C2C5A20E2000BF71A /* CHBlueKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,15 +63,15 @@
 		5B54B4072BCCD56B00D857ED /* CHBluetoothUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothUITests.swift; sourceTree = "<group>"; };
 		5B54B4092BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5BBAA37E2C40FC7D00704809 /* CHExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExample.swift; sourceTree = "<group>"; };
+		5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBlueKit.swift; sourceTree = "<group>"; };
+		5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBluetooth.swift; sourceTree = "<group>"; };
+		5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCallback.swift; sourceTree = "<group>"; };
+		5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCentralManager.swift; sourceTree = "<group>"; };
+		5BCD251E2C8B16AF00E3E214 /* CHOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHOptions.swift; sourceTree = "<group>"; };
+		5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
 		5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHBluetooth.podspec; sourceTree = "<group>"; };
 		5BF282492C5A14DA000BF71A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5BF2824F2C5A1BD4000BF71A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		5BF282512C5A203F000BF71A /* CHBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBluetooth.swift; sourceTree = "<group>"; };
-		5BF282522C5A203F000BF71A /* CHCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCallback.swift; sourceTree = "<group>"; };
-		5BF282532C5A203F000BF71A /* CHCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCentralManager.swift; sourceTree = "<group>"; };
-		5BF282542C5A203F000BF71A /* CHOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHOptions.swift; sourceTree = "<group>"; };
-		5BF282552C5A203F000BF71A /* CHPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
-		5BF2825C2C5A20E2000BF71A /* CHBlueKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBlueKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +105,7 @@
 				5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */,
 				5BF282492C5A14DA000BF71A /* LICENSE */,
 				5BF2824F2C5A1BD4000BF71A /* README.md */,
+				5BCD25202C8B16AF00E3E214 /* BLE */,
 				5B54B3EA2BCCD56900D857ED /* CHBluetooth */,
 				5B54B3FC2BCCD56B00D857ED /* CHBluetoothTests */,
 				5B54B4062BCCD56B00D857ED /* CHBluetoothUITests */,
@@ -126,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				5B3C0B612C5880650077C88B /* Info.plist */,
-				5BF282562C5A203F000BF71A /* BLE */,
 				5B54B3EB2BCCD56900D857ED /* CHBluetoothApp.swift */,
 				5B54B3ED2BCCD56900D857ED /* ContentView.swift */,
 				5B3C0B5B2C538F350077C88B /* DetailView.swift */,
@@ -165,15 +165,15 @@
 			path = CHBluetoothUITests;
 			sourceTree = "<group>";
 		};
-		5BF282562C5A203F000BF71A /* BLE */ = {
+		5BCD25202C8B16AF00E3E214 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				5BF2825C2C5A20E2000BF71A /* CHBlueKit.swift */,
-				5BF282512C5A203F000BF71A /* CHBluetooth.swift */,
-				5BF282522C5A203F000BF71A /* CHCallback.swift */,
-				5BF282532C5A203F000BF71A /* CHCentralManager.swift */,
-				5BF282542C5A203F000BF71A /* CHOptions.swift */,
-				5BF282552C5A203F000BF71A /* CHPeripheralManager.swift */,
+				5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */,
+				5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */,
+				5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */,
+				5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */,
+				5BCD251E2C8B16AF00E3E214 /* CHOptions.swift */,
+				5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -311,16 +311,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BCD25212C8B16AF00E3E214 /* CHBlueKit.swift in Sources */,
 				5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */,
+				5BCD25262C8B16AF00E3E214 /* CHPeripheralManager.swift in Sources */,
+				5BCD25252C8B16AF00E3E214 /* CHOptions.swift in Sources */,
 				5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */,
+				5BCD25232C8B16AF00E3E214 /* CHCallback.swift in Sources */,
+				5BCD25242C8B16AF00E3E214 /* CHCentralManager.swift in Sources */,
 				5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */,
-				5BF2825A2C5A203F000BF71A /* CHOptions.swift in Sources */,
-				5BF282582C5A203F000BF71A /* CHCallback.swift in Sources */,
-				5BF2825D2C5A20E2000BF71A /* CHBlueKit.swift in Sources */,
-				5BF282592C5A203F000BF71A /* CHCentralManager.swift in Sources */,
-				5BF2825B2C5A203F000BF71A /* CHPeripheralManager.swift in Sources */,
 				5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */,
-				5BF282572C5A203F000BF71A /* CHBluetooth.swift in Sources */,
+				5BCD25222C8B16AF00E3E214 /* CHBluetooth.swift in Sources */,
 				5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */,
 				5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */,
 			);

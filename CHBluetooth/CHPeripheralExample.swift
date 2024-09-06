@@ -15,6 +15,7 @@ class CHPeripheralExample: NSObject, ObservableObject {
      
     private var peripheral: CBPeripheralManager?
     private var notifyCharacteristic: CBMutableCharacteristic?
+    private var writeCharacteristic: CBMutableCharacteristic?
     
     override init() {
         super.init()
@@ -24,10 +25,12 @@ class CHPeripheralExample: NSObject, ObservableObject {
     private func setPeripheral() -> Void {
         
         bluetooth.peripheralModeDidUpdateState { [self] peripheral in
+            print("------------- \(peripheral.state)")
             if peripheral.state == .poweredOn {
                 let characteristic1 = bluetooth.makeCharacteristic(characteristicUUID: CBUUID(string: "DA18") , properties: [.notify], permissions: [.readable])
                 self.notifyCharacteristic = characteristic1
-                let characteristic2 = bluetooth.makeCharacteristic(characteristicUUID: CBUUID(string: "DA17"), properties: [.write], permissions: [.writeable])
+                let characteristic2 = bluetooth.makeCharacteristic(characteristicUUID: CBUUID(string: "DA17"), properties: [.write, .read], permissions: [.writeable, .readable])
+                self.writeCharacteristic = characteristic2
                 let characteristic3 = bluetooth.makeCharacteristic(characteristicUUID: CBUUID(string: "DA16"), properties: [.read], permissions: [.readable])
                 let service = bluetooth.makeService(uuid: "EBA38950-0D9B-4DBA-B0DF-BC7196DD44FC", characteristics: [characteristic1, characteristic2, characteristic3])
                 bluetooth.addService(services: [service])

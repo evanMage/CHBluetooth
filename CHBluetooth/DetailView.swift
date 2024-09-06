@@ -58,7 +58,7 @@ enum CHProperties: String {
 }
 
 struct CharacteristicView: View {
-    
+    @EnvironmentObject var example: CHExample
     let peripheral: CBPeripheral
     let characteristic: CBCharacteristic
     
@@ -88,7 +88,8 @@ struct CharacteristicView: View {
                 .textFieldStyle(.roundedBorder)
                 .onSubmit {
                     if let value = writeValue.stringToData {
-                        CHBluetooth.sharedBluetooth.writeValue(peripheral, value, characteristic)
+                        example.write(peripheral, characteristic: characteristic, value: "1".stringToData!)
+                        example.write(peripheral, characteristic: characteristic, value: "value".stringToData!)
                     }
                 }
             }

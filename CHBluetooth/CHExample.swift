@@ -16,6 +16,7 @@ class CHExample: NSObject, ObservableObject {
     @Published var discoverCharacteristics: Dictionary<String, Array<CBService>> = [:]
     
     private var discoverServices: Array<CBService> = []
+    private let writeQueue = DispatchQueue(label: "com.sy.ble.writeQueue")
     
     func centralSettings() -> Void {
         
@@ -27,7 +28,7 @@ class CHExample: NSObject, ObservableObject {
         bluetooth.onDiscoverPeripherals { [self] peripheral, advertisementData, rssi in
             if !scanPeripherals.contains(peripheral) {
                 scanPeripherals.append(peripheral)
-//                print("--- 1 --- Discovered: \(peripheral.name ?? "Unknown")")
+                print("--- 1 --- Discovered: \(peripheral.name ?? "Unknown")")
             }
         }
         bluetooth.onConnectedPeripheral { [self] peripheral in
@@ -61,6 +62,16 @@ class CHExample: NSObject, ObservableObject {
         bluetooth.onDisconnect { peripheral, error in
             
         }
+        
+        bluetooth.onReadValueForCharacteristic { peripheral, characteristic, error in
+            print("--写入成功---  3 -\(characteristic.value?.utf8Str ?? "")")
+        }
+        
+        bluetooth.onDidWriteValueForCharacteristic { [self] peripheral, characteristic, error in
+            writeQueue.async {
+                print("--写入成功---  2 -\(characteristic.value?.utf8Str ?? "")")
+            }
+        }
         let sancOption: Dictionary<String, Any> = [CBCentralManagerOptionShowPowerAlertKey: true]
         bluetooth.optionsConfig(scanOptions: sancOption)
     }
@@ -68,6 +79,13 @@ class CHExample: NSObject, ObservableObject {
     func startConnect(_ peripheral: CBPeripheral) -> Void {
         print("---- 开始连接：\(peripheral)")
         bluetooth.startConnect(peripheral)
+    }
+    
+    func write(_ peripheral: CBPeripheral, characteristic: CBCharacteristic, value: Data) -> Void {
+        writeQueue.async { [self] in
+            print("--写入成功--- 1 - \(value.utf8Str ?? "")")
+            bluetooth.writeValue(peripheral, value, characteristic)
+        }
     }
     
     func properties(characteristic: CBCharacteristic) -> [String] {
