@@ -9,5 +9,5 @@ import Foundation
 
 public enum CHBlue {
     /// Current  version
-    public static let version = "0.0.2"
+    public static let version = "1.0.0"
 }

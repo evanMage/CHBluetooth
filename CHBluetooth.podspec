@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "CHBluetooth"
   
-  spec.version      = "0.0.2"
+  spec.version      = "1.0.0"
   
   spec.summary      = "轻松使用BLE在iOS设备之间通信。"
   

@@ -1,7 +1,7 @@
 
 # CHBluetooth
 
-蓝牙中心模式和外设模式封装
+蓝牙中心模式和外设模式封装。支持系统iOS、watchOS、macOS
 
 ## Author
 
