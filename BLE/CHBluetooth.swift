@@ -21,9 +21,10 @@ public class CHBluetooth {
         central.callback = callback
         return central
     }()
-    
+#if !TARGET_OS_WATCH
     /// 外设模式
     private var peripheral: CHPeripheralManager?
+#endif
     
     private var callback: CHCallback? = CHCallback()
     
@@ -86,7 +87,6 @@ extension CHBluetooth {
     ///   - characteristic: 特征值
     public func readValue(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic) -> Void {
         peripheral.readValue(for: characteristic)
-//        peripheral.discoverDescriptors(for: characteristic)
     }
     
     /// 写入特征值
@@ -191,6 +191,7 @@ extension CHBluetooth {
     
 }
 
+#if !TARGET_OS_WATCH
 //MARK: - 外设模式
 extension CHBluetooth {
     
@@ -272,3 +273,4 @@ extension CHBluetooth {
         self.callback?.peripheralModeDidUnSubscribeToCharacteristic = callback
     }
 }
+#endif

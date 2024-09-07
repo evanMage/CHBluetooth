@@ -40,6 +40,8 @@ public typealias CHReadRSSIBlock = (_ rssi: NSNumber, _ error: Error?) -> Void
 public typealias CHCancelScanBlock = (_ centralManager: CBCentralManager) -> Void
 /// 断开所有连接设备回调
 public typealias CHCancelPeripheralsConnectionBlock = ((_ centralManager: CBCentralManager) -> Void)
+
+#if !TARGET_OS_WATCH
 /// 外设状态关闭委托
 public typealias CHPeripheralModeDidUpdateStateBlock = (_ peripheral: CBPeripheralManager) -> Void
 /// 添加服务委托
@@ -50,6 +52,7 @@ public typealias CHPeripheralModeDidReceiveWriteRequests = (_ peripheral: CBPeri
 public typealias CHPeripheralModeIsReadyToUpdateSubscribers = (_ peripheral: CBPeripheralManager) -> Void
 public typealias CHPeripheralModeDidSubscribeToCharacteristic = (_ peripheral: CBPeripheralManager, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void
 public typealias CHPeripheralModeDidUnSubscribeToCharacteristic = (_ peripheral: CBPeripheralManager, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void
+#endif
 
 public class CHCallback {
     //MARK: - central callback
@@ -69,7 +72,7 @@ public class CHCallback {
     var readRSSIBlock: CHReadRSSIBlock? = nil
     var cancelScanBlock: CHCancelScanBlock? = nil
     var cancelPeripheralsConnectionBlock: CHCancelPeripheralsConnectionBlock? = nil
-    
+#if !TARGET_OS_WATCH
     //MARK: - peripheral callback
     var peripheralModeDidUpdateStateBlock: CHPeripheralModeDidUpdateStateBlock? = nil
     var peripheralModeDidAddService: CHPeripheralModeDidAddService? = nil
@@ -79,4 +82,5 @@ public class CHCallback {
     var peripheralModeIsReadyToUpdateSubscribers: CHPeripheralModeIsReadyToUpdateSubscribers? = nil
     var peripheralModeDidSubscribeToCharacteristic: CHPeripheralModeDidSubscribeToCharacteristic? = nil
     var peripheralModeDidUnSubscribeToCharacteristic: CHPeripheralModeDidUnSubscribeToCharacteristic? = nil
+#endif
 }
