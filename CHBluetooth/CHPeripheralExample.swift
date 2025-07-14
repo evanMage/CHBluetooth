@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import CHBluetoothKit
 
 class CHPeripheralExample: NSObject, ObservableObject {
     

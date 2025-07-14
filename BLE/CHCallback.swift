@@ -54,7 +54,7 @@ public typealias CHPeripheralModeDidSubscribeToCharacteristic = (_ peripheral: C
 public typealias CHPeripheralModeDidUnSubscribeToCharacteristic = (_ peripheral: CBPeripheralManager, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void
 #endif
 
-public class CHCallback {
+class CHCallback {
     //MARK: - central callback
     var centralManagerDidUpdateStateBlock: CHCentralManagerDidUpdateStateBlock? = nil
     var discoverPeripheralsBlock: CHDiscoverPeripheralsBlock? = nil

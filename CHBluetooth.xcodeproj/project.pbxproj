@@ -30,11 +30,6 @@
 		5B54B4082BCCD56B00D857ED /* CHBluetoothUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4072BCCD56B00D857ED /* CHBluetoothUITests.swift */; };
 		5B54B40A2BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54B4092BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift */; };
 		5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAA37E2C40FC7D00704809 /* CHExample.swift */; };
-		5BCD25212C8B16AF00E3E214 /* CHBlueKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */; };
-		5BCD25222C8B16AF00E3E214 /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */; };
-		5BCD25232C8B16AF00E3E214 /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */; };
-		5BCD25242C8B16AF00E3E214 /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */; };
-		5BCD25262C8B16AF00E3E214 /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */; };
 		5BF2824A2C5A14DA000BF71A /* CHBluetooth.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */; };
 		5BF2824B2C5A14DA000BF71A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5BF282492C5A14DA000BF71A /* LICENSE */; };
 		5BF282502C5A1BD4000BF71A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2824F2C5A1BD4000BF71A /* README.md */; };
@@ -429,15 +424,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BCD25212C8B16AF00E3E214 /* CHBlueKit.swift in Sources */,
 				5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */,
-				5BCD25262C8B16AF00E3E214 /* CHPeripheralManager.swift in Sources */,
 				5BBAA37F2C40FC7D00704809 /* CHExample.swift in Sources */,
-				5BCD25232C8B16AF00E3E214 /* CHCallback.swift in Sources */,
-				5BCD25242C8B16AF00E3E214 /* CHCentralManager.swift in Sources */,
 				5B54B3EE2BCCD56900D857ED /* ContentView.swift in Sources */,
 				5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */,
-				5BCD25222C8B16AF00E3E214 /* CHBluetooth.swift in Sources */,
 				5B54B3EC2BCCD56900D857ED /* CHBluetoothApp.swift in Sources */,
 				5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */,
 			);

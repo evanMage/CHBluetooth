@@ -12,7 +12,7 @@ import CoreBluetooth
 public class CHBluetooth {
     
     /// 单例
-    static let sharedBluetooth = CHBluetooth()
+    public static let sharedBluetooth = CHBluetooth()
     
     /// 中心设备
     lazy private var central: CHCentralManager = {

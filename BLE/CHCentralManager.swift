@@ -19,7 +19,7 @@ class CHCentralManager: NSObject {
     private lazy var discoverPeripherals: Set<CBPeripheral> = Set()
     
     /// 初始化
-    public required init(options: Dictionary<String, Any>? = nil) {
+    required init(options: Dictionary<String, Any>? = nil) {
         super.init()
         let backgroundModes: Array<String> = Bundle.main.infoDictionary?["UIBackgroundModes"] as? Array<String> ?? []
         if backgroundModes.contains("bluetooth-central") {
@@ -117,7 +117,7 @@ extension CHCentralManager: CBPeripheralDelegate {
 extension CHCentralManager {
     
     /// 开始扫描设备
-    public func scanPeripherals(services: [CBUUID]? = nil, options: [String : Any]? = nil) -> Void {
+    func scanPeripherals(services: [CBUUID]? = nil, options: [String : Any]? = nil) -> Void {
         guard centralManager.state == .poweredOn else {
             return
         }
@@ -126,38 +126,38 @@ extension CHCentralManager {
     }
     
     /// 获取系统连接的蓝牙设备
-    public func retrieveConnectedPeripherals(_ services: [CBUUID]) -> Array<CBPeripheral> {
+    func retrieveConnectedPeripherals(_ services: [CBUUID]) -> Array<CBPeripheral> {
         return centralManager.retrieveConnectedPeripherals(withServices: services)
     }
     
     /// 停止扫描设备
-    public func stopScanningPeripherals() -> Void { 
+    func stopScanningPeripherals() -> Void {
         centralManager.stopScan()
     }
     
     /// 开始连接设备
-    public func startConnect(_ peripheral: CBPeripheral) -> Void {
+    func startConnect(_ peripheral: CBPeripheral) -> Void {
         centralManager.connect(peripheral, options: options?.connectPeripheralWithOptions)
     }
     /// 断开连接设备
-    public func cancelPeripheral(_ peripheral: CBPeripheral) -> Void {
+    func cancelPeripheral(_ peripheral: CBPeripheral) -> Void {
         centralManager.cancelPeripheralConnection(peripheral)
     }
     /// 断开所有连接的设备
-    public func cancelAllperipheral() -> Void {
+    func cancelAllperipheral() -> Void {
         for peripheral in connectedPeripherals.values {
             centralManager.cancelPeripheralConnection(peripheral)
         }
     }
     
     /// 开始发现服务
-    public func startDiscoverServices(_ peripheral: CBPeripheral) -> Void {
+    func startDiscoverServices(_ peripheral: CBPeripheral) -> Void {
         peripheral.delegate = self
         peripheral.discoverServices(options?.discoverWithServices)
     }
     
     /// 发现特征值
-    public func startDiscoverCharacteristics(_ peripheral: CBPeripheral) {
+    func startDiscoverCharacteristics(_ peripheral: CBPeripheral) {
         guard let services = peripheral.services else {
             return
         }
@@ -167,33 +167,33 @@ extension CHCentralManager {
     }
     
     /// 读取RSSI
-    public func readRSSI(_ peripheral: CBPeripheral) -> Void {
+    func readRSSI(_ peripheral: CBPeripheral) -> Void {
         peripheral.delegate = self
         peripheral.readRSSI()
     }
     
     /// 监听
-    public func notify(_ characteristic: CBCharacteristic, _ block: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
+    func notify(_ characteristic: CBCharacteristic, _ block: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
         notifyDict.updateValue(block, forKey: characteristic.uuid.uuidString)
     }
     
-    public func removeNotify(_ characteristic: CBCharacteristic) -> Void {
+    func removeNotify(_ characteristic: CBCharacteristic) -> Void {
         notifyDict.removeValue(forKey: characteristic.uuid.uuidString)
     }
     
 }
 
 //MARK: - 中心模式扫描参数
-public class CHOptions {
+class CHOptions {
     /// 扫描设备参数
-    public var scanForPeripheralsWithOptions: Dictionary<String, Any>? = nil
+    var scanForPeripheralsWithOptions: Dictionary<String, Any>? = nil
     /// 连接设备参数
-    public var connectPeripheralWithOptions: Dictionary<String, Any>? = nil
+    var connectPeripheralWithOptions: Dictionary<String, Any>? = nil
     /// 扫描设备服务参数
-    public var scanForPeripheralsWithServices: Array<CBUUID>? = nil
+    var scanForPeripheralsWithServices: Array<CBUUID>? = nil
     /// 发现服务参数
-    public var discoverWithServices: Array<CBUUID>? = nil
+    var discoverWithServices: Array<CBUUID>? = nil
     /// 发现特征值参数
-    public var discoverWithCharacteristics: Array<CBUUID>? = nil
+    var discoverWithCharacteristics: Array<CBUUID>? = nil
     
 }
