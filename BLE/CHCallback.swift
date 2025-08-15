@@ -41,7 +41,7 @@ public typealias CHCancelScanBlock = (_ centralManager: CBCentralManager) -> Voi
 /// 断开所有连接设备回调
 public typealias CHCancelPeripheralsConnectionBlock = ((_ centralManager: CBCentralManager) -> Void)
 
-#if !TARGET_OS_WATCH
+#if !os(watchOS)
 /// 外设状态关闭委托
 public typealias CHPeripheralModeDidUpdateStateBlock = (_ peripheral: CBPeripheralManager) -> Void
 /// 添加服务委托
@@ -72,7 +72,7 @@ class CHCallback {
     var readRSSIBlock: CHReadRSSIBlock? = nil
     var cancelScanBlock: CHCancelScanBlock? = nil
     var cancelPeripheralsConnectionBlock: CHCancelPeripheralsConnectionBlock? = nil
-#if !TARGET_OS_WATCH
+#if !os(watchOS)
     //MARK: - peripheral callback
     var peripheralModeDidUpdateStateBlock: CHPeripheralModeDidUpdateStateBlock? = nil
     var peripheralModeDidAddService: CHPeripheralModeDidAddService? = nil

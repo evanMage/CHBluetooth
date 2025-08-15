@@ -21,7 +21,7 @@ public class CHBluetooth {
         central.callback = callback
         return central
     }()
-#if !TARGET_OS_WATCH
+#if !os(watchOS)
     /// 外设模式
     private var peripheral: CHPeripheralManager?
 #endif
@@ -191,7 +191,7 @@ extension CHBluetooth {
     
 }
 
-#if !TARGET_OS_WATCH
+#if !os(watchOS)
 //MARK: - 外设模式
 extension CHBluetooth {
     
