@@ -175,6 +175,9 @@ extension CHBluetooth {
     ///   - characteristic: 特征值
     ///   - callback: 结果回调
     public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
+        if characteristic.isNotifying {
+           return
+        }
         peripheral.setNotifyValue(true, for: characteristic)
         central.notify(characteristic, callback)
     }

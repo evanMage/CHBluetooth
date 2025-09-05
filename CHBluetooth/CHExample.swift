@@ -17,7 +17,7 @@ class CHExample: NSObject, ObservableObject {
     @Published var discoverCharacteristics: Dictionary<String, Array<CBService>> = [:]
     
     private var discoverServices: Array<CBService> = []
-    private let writeQueue = DispatchQueue(label: "com.sy.ble.writeQueue")
+    private let writeQueue = DispatchQueue(label: "com.evan.ble.writeQueue")
     
     func centralSettings() -> Void {
         

@@ -3,22 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		120528B72D92469300848221 /* CHBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120528A22D92469300848221 /* CHBluetoothKit.framework */; };
 		120528B82D92469300848221 /* CHBluetoothKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 120528A22D92469300848221 /* CHBluetoothKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		120528C12D9247E600848221 /* CHBlueKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */; };
-		120528C22D9247E600848221 /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */; };
-		120528C32D9247E600848221 /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */; };
-		120528C42D9247E600848221 /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */; };
-		120528C52D9247E600848221 /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */; };
-		120528C62D924BD500848221 /* CHBluetooth.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		120528C72D924C1200848221 /* CHCallback.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		120528C82D924C1B00848221 /* CHBlueKit.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		120528C92D924C1B00848221 /* CHCentralManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */; };
-		120528CA2D924C1B00848221 /* CHPeripheralManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */; };
 		5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5B2C538F350077C88B /* DetailView.swift */; };
 		5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */; };
 		5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */; };
@@ -91,11 +81,6 @@
 		5B54B4072BCCD56B00D857ED /* CHBluetoothUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothUITests.swift; sourceTree = "<group>"; };
 		5B54B4092BCCD56B00D857ED /* CHBluetoothUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetoothUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5BBAA37E2C40FC7D00704809 /* CHExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExample.swift; sourceTree = "<group>"; };
-		5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBlueKit.swift; sourceTree = "<group>"; };
-		5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBluetooth.swift; sourceTree = "<group>"; };
-		5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCallback.swift; sourceTree = "<group>"; };
-		5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCentralManager.swift; sourceTree = "<group>"; };
-		5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
 		5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHBluetooth.podspec; sourceTree = "<group>"; };
 		5BF282492C5A14DA000BF71A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5BF2824F2C5A1BD4000BF71A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -111,8 +96,34 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		129CC15E2E6A72A0002130FA /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				CHBlueKit.swift = (
+					Public,
+				);
+				CHBluetooth.swift = (
+					Public,
+				);
+				CHCallback.swift = (
+					Public,
+				);
+			};
+			buildPhase = 1205289D2D92469300848221 /* Headers */;
+			membershipExceptions = (
+				CHBlueKit.swift,
+				CHBluetooth.swift,
+				CHCallback.swift,
+				CHCentralManager.swift,
+				CHPeripheralManager.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		120528A32D92469300848221 /* CHBluetoothKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (120528BE2D92469300848221 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = CHBluetoothKit; sourceTree = "<group>"; };
+		129CC1532E6A72A0002130FA /* BLE */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (129CC15E2E6A72A0002130FA /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BLE; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +165,7 @@
 				5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */,
 				5BF282492C5A14DA000BF71A /* LICENSE */,
 				5BF2824F2C5A1BD4000BF71A /* README.md */,
-				5BCD25202C8B16AF00E3E214 /* BLE */,
+				129CC1532E6A72A0002130FA /* BLE */,
 				5B54B3EA2BCCD56900D857ED /* CHBluetooth */,
 				5B54B3FC2BCCD56B00D857ED /* CHBluetoothTests */,
 				5B54B4062BCCD56B00D857ED /* CHBluetoothUITests */,
@@ -216,18 +227,6 @@
 			path = CHBluetoothUITests;
 			sourceTree = "<group>";
 		};
-		5BCD25202C8B16AF00E3E214 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				5BCD251A2C8B16AF00E3E214 /* CHBlueKit.swift */,
-				5BCD251B2C8B16AF00E3E214 /* CHBluetooth.swift */,
-				5BCD251C2C8B16AF00E3E214 /* CHCallback.swift */,
-				5BCD251D2C8B16AF00E3E214 /* CHCentralManager.swift */,
-				5BCD251F2C8B16AF00E3E214 /* CHPeripheralManager.swift */,
-			);
-			path = BLE;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -235,11 +234,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120528C62D924BD500848221 /* CHBluetooth.swift in Headers */,
-				120528C72D924C1200848221 /* CHCallback.swift in Headers */,
-				120528C82D924C1B00848221 /* CHBlueKit.swift in Headers */,
-				120528C92D924C1B00848221 /* CHCentralManager.swift in Headers */,
-				120528CA2D924C1B00848221 /* CHPeripheralManager.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +255,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				120528A32D92469300848221 /* CHBluetoothKit */,
+				129CC1532E6A72A0002130FA /* BLE */,
 			);
 			name = CHBluetoothKit;
 			packageProductDependencies = (
@@ -351,7 +346,6 @@
 				};
 			};
 			buildConfigurationList = 5B54B3E32BCCD56900D857ED /* Build configuration list for PBXProject "CHBluetooth" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -359,6 +353,7 @@
 				Base,
 			);
 			mainGroup = 5B54B3DF2BCCD56900D857ED;
+			preferredProjectObjectVersion = 56;
 			productRefGroup = 5B54B3E92BCCD56900D857ED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -412,11 +407,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120528C12D9247E600848221 /* CHBlueKit.swift in Sources */,
-				120528C22D9247E600848221 /* CHCentralManager.swift in Sources */,
-				120528C32D9247E600848221 /* CHCallback.swift in Sources */,
-				120528C42D9247E600848221 /* CHBluetooth.swift in Sources */,
-				120528C52D9247E600848221 /* CHPeripheralManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
