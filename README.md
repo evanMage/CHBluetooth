@@ -5,7 +5,7 @@
 
 ## Author
 
-evanMage
+evan
 
 ## License
 

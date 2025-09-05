@@ -35,7 +35,6 @@ struct ContentView: View {
             .navigationTitle("首页")
         }
         .onAppear(perform: {
-//            example2.centralSettings()
             example.centralSettings()
             for index in 0...20 {
                 queue.async {
