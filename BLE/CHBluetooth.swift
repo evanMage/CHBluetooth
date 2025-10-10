@@ -44,9 +44,13 @@ extension CHBluetooth {
     }
     
     /// 获取系统正在连接外设
-    public func retrieveConnectedPeripherals() -> Array<CBPeripheral>? {
-        if options?.scanForPeripheralsWithServices != nil {
-            return central.retrieveConnectedPeripherals((options?.scanForPeripheralsWithServices)!)
+    public func retrieveConnectedPeripherals(scanServices: Array<CBUUID>? = nil) -> Array<CBPeripheral>? {
+        if scanServices != nil {
+            return central.retrieveConnectedPeripherals(scanServices!)
+        } else {
+            if options?.scanForPeripheralsWithServices != nil {
+                return central.retrieveConnectedPeripherals((options?.scanForPeripheralsWithServices)!)
+            }
         }
         return nil
     }
