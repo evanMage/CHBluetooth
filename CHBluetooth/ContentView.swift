@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var example: CHExample
-//    @StateObject var example2: CHExample2 = CHExample2()
     private let queue = DispatchQueue(label: "com.evan.queue")
     
     var body: some View {
@@ -42,9 +41,6 @@ struct ContentView: View {
                     print("----1------ \(index)")
                 }
             }
-//            queue.async {
-                
-//            }
         })
     }
 }

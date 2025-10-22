@@ -130,6 +130,11 @@ extension CHCentralManager {
         return centralManager.retrieveConnectedPeripherals(withServices: services)
     }
     
+    /// 获取已知外设的蓝牙设备
+    func retrievePeripherals(identifiers: [UUID]) -> Array<CBPeripheral> {
+        return centralManager.retrievePeripherals(withIdentifiers: identifiers)
+    }
+    
     /// 停止扫描设备
     func stopScanningPeripherals() -> Void {
         centralManager.stopScan()

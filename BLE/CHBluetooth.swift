@@ -55,6 +55,11 @@ extension CHBluetooth {
         return nil
     }
     
+    /// 获取已知外设的蓝牙设备
+    public func retrievePeripherals(identifiers: [UUID]) -> Array<CBPeripheral> {
+        return central.retrievePeripherals(identifiers: identifiers)
+    }
+    
     /// 开始扫描
     public func startScanPeripherals() -> Void {
         central.scanPeripherals(services: options?.scanForPeripheralsWithServices, options: options?.scanForPeripheralsWithOptions)
@@ -180,7 +185,7 @@ extension CHBluetooth {
     ///   - callback: 结果回调
     public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
         if characteristic.isNotifying {
-           return
+            return
         }
         peripheral.setNotifyValue(true, for: characteristic)
         central.notify(characteristic, callback)
