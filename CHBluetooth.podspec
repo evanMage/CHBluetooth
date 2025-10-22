@@ -13,9 +13,7 @@ Pod::Spec.new do |spec|
 
   spec.author    = "evan"
 
-  spec.ios.deployment_target = "10.0"
-  spec.macos.deployment_target   = '11.0'
-  spec.watchos.deployment_target = '8.0'
+  s.platforms = { :ios => '10.0', :watchos => '9.0' }
   
   spec.swift_versions = "5.0"
   
