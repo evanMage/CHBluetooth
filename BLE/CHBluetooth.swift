@@ -61,7 +61,13 @@ extension CHBluetooth {
     }
     
     /// 开始扫描
-    public func startScanPeripherals() -> Void {
+    public func startScanPeripherals(scanServices: Array<CBUUID>? = nil, scanOptions: Dictionary<String, Any>? = nil) -> Void {
+        if scanServices != nil {
+            options?.scanForPeripheralsWithServices = scanServices
+        }
+        if scanOptions != nil {
+            options?.scanForPeripheralsWithOptions = scanOptions
+        }
         central.scanPeripherals(services: options?.scanForPeripheralsWithServices, options: options?.scanForPeripheralsWithOptions)
     }
     
@@ -72,7 +78,10 @@ extension CHBluetooth {
         callback?(central.centralManager)
     }
     /// 开始连接设备
-    public func startConnect(_ peripheral: CBPeripheral) -> Void {
+    public func startConnect(_ peripheral: CBPeripheral, connectOptions: Dictionary<String, Any>? = nil) -> Void {
+        if connectOptions != nil {
+            options?.connectPeripheralWithOptions = connectOptions
+        }
         central.startConnect(peripheral)
     }
     /// 断开设备连接
@@ -183,7 +192,7 @@ extension CHBluetooth {
     ///   - peripheral: 外设设备
     ///   - characteristic: 特征值
     ///   - callback: 结果回调
-    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
+    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping (_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) -> Void {
         if characteristic.isNotifying {
             return
         }

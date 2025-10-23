@@ -21,12 +21,7 @@ class CHCentralManager: NSObject {
     /// 初始化
     required init(options: Dictionary<String, Any>? = nil) {
         super.init()
-        let backgroundModes: Array<String> = Bundle.main.infoDictionary?["UIBackgroundModes"] as? Array<String> ?? []
-        if backgroundModes.contains("bluetooth-central") {
-            centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
-        } else {
-            centralManager = CBCentralManager(delegate: self, queue: nil)
-        }
+        centralManager = CBCentralManager(delegate: self, queue: nil, options: options)
     }
     
 }
@@ -178,7 +173,7 @@ extension CHCentralManager {
     }
     
     /// 监听
-    func notify(_ characteristic: CBCharacteristic, _ block: @escaping ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void)) -> Void {
+    func notify(_ characteristic: CBCharacteristic, _ block: @escaping (_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) -> Void {
         notifyDict.updateValue(block, forKey: characteristic.uuid.uuidString)
     }
     
