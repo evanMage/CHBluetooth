@@ -73,10 +73,7 @@ extension CHCentralManager: CBPeripheralDelegate {
     }
     /// 读取Characteristics的值
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if notifyDict[characteristic.uuid.uuidString] != nil {
-            guard let notifyBlock = notifyDict[characteristic.uuid.uuidString] as? ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) else {
-                return
-            }
+        if let notifyBlock = notifyDict[characteristic.uuid.uuidString] as? ((_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) {
             notifyBlock(peripheral, characteristic, error)
             return
         }
@@ -158,10 +155,7 @@ extension CHCentralManager {
     
     /// 发现特征值
     func startDiscoverCharacteristics(_ peripheral: CBPeripheral) {
-        guard let services = peripheral.services else {
-            return
-        }
-        for service in services {
+        for service in peripheral.services ?? [] {
             peripheral.discoverCharacteristics(options?.discoverWithCharacteristics, for: service)
         }
     }
