@@ -35,12 +35,6 @@ struct ContentView: View {
         }
         .onAppear(perform: {
             example.centralSettings()
-            for index in 0...20 {
-                queue.async {
-                    sleep(2)
-                    print("----1------ \(index)")
-                }
-            }
         })
     }
 }

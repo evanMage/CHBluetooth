@@ -12,12 +12,12 @@ struct CHBluetoothApp: App {
     
     @StateObject var example = CHExample()
     // 外设模式
-    @StateObject var peripheralExample = CHPeripheralExample.manager
+//    @StateObject var peripheralExample = CHPeripheralExample.manager
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(example)
-                .environmentObject(peripheralExample)
+//                .environmentObject(peripheralExample)
         }
     }
 }

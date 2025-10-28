@@ -237,11 +237,8 @@ extension CHBluetooth {
     }
     
     /// 开始广播
-    public func startAdvertising(localName: String, serverUuids: Array<CBUUID>, manufacturerData: Data? = nil) -> Void {
-        if serverUuids.isEmpty {
-            return
-        }
-        peripheral?.startAdvertising(localName: localName, uuids: serverUuids, manufacturerData: manufacturerData)
+    public func startAdvertising(localName: String, manufacturerData: Data? = nil) -> Void {
+        peripheral?.startAdvertising(localName: localName, manufacturerData: manufacturerData)
     }
     /// 停止广播
     public func stopAdvertising() -> Void {

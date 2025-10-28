@@ -31,7 +31,7 @@ class CHPeripheralManager: NSObject {
         }
     }
     
-    func startAdvertising(localName: String, uuids: Array<CBUUID>, manufacturerData: Data? = nil) -> Void {
+    func startAdvertising(localName: String, manufacturerData: Data? = nil) -> Void {
         if peripheralManager?.state != .poweredOn, addServiceCount != services.count {
             return
         }

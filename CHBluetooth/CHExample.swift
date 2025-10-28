@@ -21,15 +21,25 @@ class CHExample: NSObject, ObservableObject {
     
     func centralSettings() -> Void {
         
-        bluetooth.onStateChange { central in
+        bluetooth.onStateChange { [self] central in
             if central.state == .poweredOn {
-                self.bluetooth.startScanPeripherals()
+                let retrievePeripherals = bluetooth.retrievePeripherals(identifiers: [UUID(uuidString: "3E1A97F3-3E78-E01C-5096-44C451609AA7")!])
+                print("------- 扫描到已知设备 - \(retrievePeripherals)")
+                if retrievePeripherals.isEmpty {
+                    bluetooth.startScanPeripherals()
+                } else {
+                    guard let peripheral = retrievePeripherals.first else {
+                        return
+                    }
+                    scanPeripherals.append(peripheral)
+                    startConnect(peripheral)
+                }
             }
         }
         bluetooth.onDiscoverPeripherals { [self] peripheral, advertisementData, rssi in
             if !scanPeripherals.contains(peripheral) {
                 scanPeripherals.append(peripheral)
-                print("--- 1 --- Discovered: \(peripheral.name ?? "Unknown")")
+                print("------ Discovered: \(peripheral) - rssi: \(rssi)")
             }
         }
         bluetooth.onConnectedPeripheral { [self] peripheral in
@@ -65,7 +75,7 @@ class CHExample: NSObject, ObservableObject {
         }
         
         bluetooth.onReadValueForCharacteristic { peripheral, characteristic, error in
-            print("--写入成功---  3 -\(characteristic.value?.utf8Str ?? "")")
+            print("--读取成功---  3 -\(characteristic.value?.utf8Str ?? "")")
         }
         
         bluetooth.onDidWriteValueForCharacteristic { [self] peripheral, characteristic, error in
@@ -78,7 +88,7 @@ class CHExample: NSObject, ObservableObject {
     }
     
     func startConnect(_ peripheral: CBPeripheral) -> Void {
-        print("---- 开始连接：\(peripheral)")
+        print("---- 开始连接：\(peripheral.identifier.uuidString)")
         bluetooth.startConnect(peripheral)
     }
     

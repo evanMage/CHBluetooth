@@ -39,7 +39,7 @@ class CHPeripheralExample: NSObject, ObservableObject {
         }
         
         bluetooth.peripheralModeDidAddService { [self] peripheral, service, error in
-            bluetooth.startAdvertising(localName: "iPhone", serverUuids: [CBUUID(string: "EBA38950-0D9B-4DBA-B0DF-BC7196DD44FC")])
+            bluetooth.startAdvertising(localName: "iPhone")
         }
         
         bluetooth.peripheralModeDidStartAdvertising { peripheral, error in
@@ -69,7 +69,7 @@ class CHPeripheralExample: NSObject, ObservableObject {
         
         bluetooth.peripheralModeDidUnSubscribeToCharacteristic { [self] peripheral, central, characteristic in
             print("接收订阅取消：\(peripheral)")
-            bluetooth.startAdvertising(localName: "iPhone", serverUuids: [CBUUID(string: "EBA38950-0D9B-4DBA-B0DF-BC7196DD44FC")])
+            bluetooth.startAdvertising(localName: "iPhone")
         }
         
         bluetooth.peripheralModeIsReadyToUpdateSubscribers { [self] peripheral in
