@@ -8,6 +8,7 @@
 import CoreBluetooth
 
 /// 外设模式
+#if !os(watchOS)
 class CHPeripheralManager: NSObject {
     
     private var peripheralManager: CBPeripheralManager?
@@ -48,6 +49,7 @@ class CHPeripheralManager: NSObject {
     
     func stopAdvertising() -> Void {
         peripheralManager?.stopAdvertising()
+        addServiceCount = 0
     }
     
 }
@@ -89,3 +91,4 @@ extension CHPeripheralManager: CBPeripheralManagerDelegate {
     }
     
 }
+#endif

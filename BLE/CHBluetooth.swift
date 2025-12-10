@@ -192,7 +192,7 @@ extension CHBluetooth {
     ///   - peripheral: 外设设备
     ///   - characteristic: 特征值
     ///   - callback: 结果回调
-    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping (_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) -> Void) -> Void {
+    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping CHReadValueForCharacteristicBlock) -> Void {
         if characteristic.isNotifying {
             return
         }
