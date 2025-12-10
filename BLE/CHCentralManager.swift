@@ -73,7 +73,7 @@ extension CHCentralManager: CBPeripheralDelegate {
     }
     /// 读取Characteristics的值
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if let notifyBlock = notifyDict[characteristic.uuid.uuidString] as? CHReadValueForCharacteristicBlock {
+        if let notifyBlock = notifyDict[characteristic.uuid.uuidString] as? CHCharacteristicInfoBlock {
             notifyBlock(peripheral, characteristic, error)
         }
         callback?.readValueForCharacteristicBlock?(peripheral, characteristic, error)
@@ -166,7 +166,7 @@ extension CHCentralManager {
     }
     
     /// 监听
-    func notify(_ characteristic: CBCharacteristic, _ block: @escaping CHReadValueForCharacteristicBlock) -> Void {
+    func notify(_ characteristic: CBCharacteristic, _ block: @escaping CHCharacteristicInfoBlock) -> Void {
         notifyDict.updateValue(block, forKey: characteristic.uuid.uuidString)
     }
     

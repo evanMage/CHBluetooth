@@ -73,7 +73,7 @@ extension CHBluetooth {
     
     /// 停止扫描
     /// - Parameter callback: 回调
-    public func stopScan(callback: CHCancelScanBlock? = nil) -> Void {
+    public func stopScan(callback: CHCentralManagerBlock? = nil) -> Void {
         central.stopScanningPeripherals()
         callback?(central.centralManager)
     }
@@ -119,7 +119,7 @@ extension CHBluetooth {
     
     //MARK: - 回调
     /// central state 发生改变
-    public func onStateChange(_ callback: @escaping CHCentralManagerDidUpdateStateBlock) -> Void {
+    public func onStateChange(_ callback: @escaping CHCentralManagerBlock) -> Void {
         self.callback?.centralManagerDidUpdateStateBlock = callback
         
     }
@@ -135,15 +135,15 @@ extension CHBluetooth {
     }
     
     /// 连接设备失败
-    public func onFailToConnect(_ callback: @escaping CHFailToConnectBlock) -> Void {
+    public func onFailToConnect(_ callback: @escaping CHPeripheralInfoBlock) -> Void {
         self.callback?.failToConnectBlock = callback
     }
     /// 断开设备连接
-    public func onDisconnect(_ callback: @escaping CHDisconnectBlock) -> Void {
+    public func onDisconnect(_ callback: @escaping CHPeripheralInfoBlock) -> Void {
         self.callback?.disconnectBlock = callback
     }
     /// 发现服务委托
-    public func onDiscoverServices(_ callback: @escaping CHDiscoverServicesBlock) -> Void {
+    public func onDiscoverServices(_ callback: @escaping CHPeripheralInfoBlock) -> Void {
         self.callback?.discoverServicesBlock = callback
     }
     /// 找到特征委托
@@ -151,11 +151,11 @@ extension CHBluetooth {
         self.callback?.discoverCharacteristicsBlock = callback
     }
     /// 读取特征值委托
-    public func onReadValueForCharacteristic(_ callback: @escaping CHReadValueForCharacteristicBlock) -> Void {
+    public func onReadValueForCharacteristic(_ callback: @escaping CHCharacteristicInfoBlock) -> Void {
         self.callback?.readValueForCharacteristicBlock = callback
     }
     /// 获取特征值名称
-    public func onDiscoverDescriptorsForCharacteristic(_ callback: @escaping CHDiscoverDescriptorsForCharacteristicBlock) -> Void {
+    public func onDiscoverDescriptorsForCharacteristic(_ callback: @escaping CHCharacteristicInfoBlock) -> Void {
         self.callback?.discoverDescriptorsForCharacteristicBlock = callback
     }
     /// 获取Descriptors的值
@@ -163,7 +163,7 @@ extension CHBluetooth {
         self.callback?.readValueForDescriptorsBlock = callback
     }
     /// 写入特征值委托
-    public func onDidWriteValueForCharacteristic(_ callback: @escaping CHDidWriteValueForCharacteristicBlock) -> Void {
+    public func onDidWriteValueForCharacteristic(_ callback: @escaping CHCharacteristicInfoBlock) -> Void {
         self.callback?.didWriteValueForCharacteristicBlock = callback
     }
     /// 写入Descriptors
@@ -182,7 +182,7 @@ extension CHBluetooth {
     }
     
     /// 断开所有设备连接
-    public func onCancelAllPeripheralsConnection(_ callback: CHCancelPeripheralsConnectionBlock? = nil) -> Void {
+    public func onCancelAllPeripheralsConnection(_ callback: CHCentralManagerBlock? = nil) -> Void {
         central.cancelAllperipheral()
         self.callback?.cancelPeripheralsConnectionBlock = callback
     }
@@ -192,7 +192,7 @@ extension CHBluetooth {
     ///   - peripheral: 外设设备
     ///   - characteristic: 特征值
     ///   - callback: 结果回调
-    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping CHReadValueForCharacteristicBlock) -> Void {
+    public func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ callback: @escaping CHCharacteristicInfoBlock) -> Void {
         if characteristic.isNotifying {
             return
         }
@@ -281,13 +281,13 @@ extension CHBluetooth {
     
     /// 取消订阅通知
     /// - Parameter callback: CHPeripheralModeDidSubscribeToCharacteristic
-    public func peripheralModeDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidSubscribeToCharacteristic) -> Void {
+    public func peripheralModeDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeCharacteristicBlock) -> Void {
         self.callback?.peripheralModeDidSubscribeToCharacteristic = callback
     }
     
     /// 更新特征值
     /// - Parameter callback: CHPeripheralModeDidUnSubscribeToCharacteristic
-    public func peripheralModeDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeDidUnSubscribeToCharacteristic) -> Void {
+    public func peripheralModeDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeCharacteristicBlock) -> Void {
         self.callback?.peripheralModeDidUnSubscribeToCharacteristic = callback
     }
 }
