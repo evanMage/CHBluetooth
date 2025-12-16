@@ -3,12 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 73;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		120528B72D92469300848221 /* CHBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120528A22D92469300848221 /* CHBluetoothKit.framework */; };
 		120528B82D92469300848221 /* CHBluetoothKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 120528A22D92469300848221 /* CHBluetoothKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		12D206E72EF13E86006C754D /* CHBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D206E12EF13E86006C754D /* CHBluetooth.swift */; };
+		12D206E82EF13E86006C754D /* CHCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D206E32EF13E86006C754D /* CHCentralManager.swift */; };
+		12D206E92EF13E86006C754D /* CHCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D206E22EF13E86006C754D /* CHCallback.swift */; };
+		12D206EA2EF13E86006C754D /* CHBlueKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D206E02EF13E86006C754D /* CHBlueKit.swift */; };
+		12D206EB2EF13E86006C754D /* CHPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D206E42EF13E86006C754D /* CHPeripheralManager.swift */; };
 		5B3C0B5C2C538F350077C88B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5B2C538F350077C88B /* DetailView.swift */; };
 		5B3C0B5E2C57953F0077C88B /* CHPeripheralExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */; };
 		5B3C0B602C587A8F0077C88B /* CHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */; };
@@ -65,6 +70,11 @@
 
 /* Begin PBXFileReference section */
 		120528A22D92469300848221 /* CHBluetoothKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CHBluetoothKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12D206E02EF13E86006C754D /* CHBlueKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBlueKit.swift; sourceTree = "<group>"; };
+		12D206E12EF13E86006C754D /* CHBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBluetooth.swift; sourceTree = "<group>"; };
+		12D206E22EF13E86006C754D /* CHCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCallback.swift; sourceTree = "<group>"; };
+		12D206E32EF13E86006C754D /* CHCentralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCentralManager.swift; sourceTree = "<group>"; };
+		12D206E42EF13E86006C754D /* CHPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeripheralManager.swift; sourceTree = "<group>"; };
 		5B3C0B5B2C538F350077C88B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5B3C0B5D2C57953F0077C88B /* CHPeripheralExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeripheralExample.swift; sourceTree = "<group>"; };
 		5B3C0B5F2C587A8F0077C88B /* CHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHExtension.swift; sourceTree = "<group>"; };
@@ -96,34 +106,8 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		129CC15E2E6A72A0002130FA /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			attributesByRelativePath = {
-				CHBlueKit.swift = (
-					Public,
-				);
-				CHBluetooth.swift = (
-					Public,
-				);
-				CHCallback.swift = (
-					Public,
-				);
-			};
-			buildPhase = 1205289D2D92469300848221 /* Headers */;
-			membershipExceptions = (
-				CHBlueKit.swift,
-				CHBluetooth.swift,
-				CHCallback.swift,
-				CHCentralManager.swift,
-				CHPeripheralManager.swift,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		120528A32D92469300848221 /* CHBluetoothKit */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (120528BE2D92469300848221 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = CHBluetoothKit; sourceTree = "<group>"; };
-		129CC1532E6A72A0002130FA /* BLE */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (129CC15E2E6A72A0002130FA /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BLE; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,13 +143,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12D206E52EF13E86006C754D /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				12D206E02EF13E86006C754D /* CHBlueKit.swift */,
+				12D206E12EF13E86006C754D /* CHBluetooth.swift */,
+				12D206E22EF13E86006C754D /* CHCallback.swift */,
+				12D206E32EF13E86006C754D /* CHCentralManager.swift */,
+				12D206E42EF13E86006C754D /* CHPeripheralManager.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		12D206E62EF13E86006C754D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				12D206E52EF13E86006C754D /* BLE */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		5B54B3DF2BCCD56900D857ED = {
 			isa = PBXGroup;
 			children = (
 				5BF282482C5A14DA000BF71A /* CHBluetooth.podspec */,
 				5BF282492C5A14DA000BF71A /* LICENSE */,
 				5BF2824F2C5A1BD4000BF71A /* README.md */,
-				129CC1532E6A72A0002130FA /* BLE */,
+				12D206E62EF13E86006C754D /* Sources */,
 				5B54B3EA2BCCD56900D857ED /* CHBluetooth */,
 				5B54B3FC2BCCD56B00D857ED /* CHBluetoothTests */,
 				5B54B4062BCCD56B00D857ED /* CHBluetoothUITests */,
@@ -255,7 +259,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				120528A32D92469300848221 /* CHBluetoothKit */,
-				129CC1532E6A72A0002130FA /* BLE */,
 			);
 			name = CHBluetoothKit;
 			packageProductDependencies = (
@@ -346,6 +349,7 @@
 				};
 			};
 			buildConfigurationList = 5B54B3E32BCCD56900D857ED /* Build configuration list for PBXProject "CHBluetooth" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -353,7 +357,6 @@
 				Base,
 			);
 			mainGroup = 5B54B3DF2BCCD56900D857ED;
-			preferredProjectObjectVersion = 56;
 			productRefGroup = 5B54B3E92BCCD56900D857ED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -407,6 +410,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D206E72EF13E86006C754D /* CHBluetooth.swift in Sources */,
+				12D206E82EF13E86006C754D /* CHCentralManager.swift in Sources */,
+				12D206E92EF13E86006C754D /* CHCallback.swift in Sources */,
+				12D206EA2EF13E86006C754D /* CHBlueKit.swift in Sources */,
+				12D206EB2EF13E86006C754D /* CHPeripheralManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,7 +759,6 @@
 		5B54B4112BCCD56B00D857ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -775,7 +782,6 @@
 		5B54B4122BCCD56B00D857ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -799,7 +805,6 @@
 		5B54B4142BCCD56B00D857ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -822,7 +827,6 @@
 		5B54B4152BCCD56B00D857ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
