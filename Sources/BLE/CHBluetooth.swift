@@ -48,8 +48,8 @@ extension CHBluetooth {
         if scanServices != nil {
             return central.retrieveConnectedPeripherals(scanServices!)
         } else {
-            if options?.scanForPeripheralsWithServices != nil {
-                return central.retrieveConnectedPeripherals((options?.scanForPeripheralsWithServices)!)
+            if let services = options?.scanForPeripheralsWithServices {
+                return central.retrieveConnectedPeripherals(services)
             }
         }
         return nil
