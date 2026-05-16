@@ -148,7 +148,9 @@ extension CHCentralManager {
     
     /// 开始发现服务
     func startDiscoverServices(_ peripheral: CBPeripheral) -> Void {
-        peripheral.delegate = self
+        if peripheral.delegate == nil {
+            peripheral.delegate = self
+        }
         peripheral.discoverServices(options?.discoverWithServices)
     }
     
@@ -161,7 +163,9 @@ extension CHCentralManager {
     
     /// 读取RSSI
     func readRSSI(_ peripheral: CBPeripheral) -> Void {
-        peripheral.delegate = self
+        if peripheral.delegate == nil {
+            peripheral.delegate = self
+        }
         peripheral.readRSSI()
     }
     
