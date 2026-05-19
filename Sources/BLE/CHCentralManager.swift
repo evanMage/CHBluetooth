@@ -14,7 +14,7 @@ class CHCentralManager: NSObject {
     internal var centralManager: CBCentralManager?
     internal var options: CHOptions?
     internal var callback: CHCallback?
-    internal var connectedPeripherals: [String : CBPeripheral] = [:]
+    internal var connectedPeripherals: [String: CBPeripheral] = [:]
     internal var notifyDict: [String: CHCharacteristicInfoBlock] = [:]
     private lazy var discoverPeripherals: [UUID: CBPeripheral] = [:]
     
@@ -49,7 +49,7 @@ extension CHCentralManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         connectedPeripherals.removeValue(forKey: peripheral.identifier.uuidString)
         callback?.disconnectBlock?(peripheral, error)
-        if connectedPeripherals.count == 0 {
+        if connectedPeripherals.isEmpty {
             callback?.cancelPeripheralsConnectionBlock?(central)
         }
     }
@@ -130,6 +130,7 @@ extension CHCentralManager {
     /// 停止扫描设备
     func stopScanningPeripherals() -> Void {
         centralManager?.stopScan()
+        discoverPeripherals.removeAll()
     }
     
     /// 开始连接设备
@@ -141,7 +142,7 @@ extension CHCentralManager {
         centralManager?.cancelPeripheralConnection(peripheral)
     }
     /// 断开所有连接的设备
-    func cancelAllperipheral() -> Void {
+    func cancelAllperipherals() -> Void {
         for peripheral in connectedPeripherals.values {
             centralManager?.cancelPeripheralConnection(peripheral)
         }
@@ -184,16 +185,16 @@ extension CHCentralManager {
 }
 
 //MARK: - 中心模式扫描参数
-class CHOptions {
+struct CHOptions {
     /// 扫描设备参数
-    var scanForPeripheralsWithOptions: Dictionary<String, Any>? = nil
+    var scanForPeripheralsWithOptions: [String: Any]?
     /// 连接设备参数
-    var connectPeripheralWithOptions: Dictionary<String, Any>? = nil
+    var connectPeripheralWithOptions: [String: Any]?
     /// 扫描设备服务参数
-    var scanForPeripheralsWithServices: Array<CBUUID>? = nil
+    var scanForPeripheralsWithServices: [CBUUID]?
     /// 发现服务参数
-    var discoverWithServices: Array<CBUUID>? = nil
+    var discoverWithServices: [CBUUID]?
     /// 发现特征值参数
-    var discoverWithCharacteristics: Array<CBUUID>? = nil
+    var discoverWithCharacteristics: [CBUUID]?
     
 }

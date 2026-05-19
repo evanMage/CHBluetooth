@@ -185,7 +185,7 @@ extension CHBluetooth {
     
     /// 断开所有设备连接
     public func onCancelAllPeripheralsConnection(_ callback: CHCentralManagerBlock? = nil) -> Void {
-        central.cancelAllperipheral()
+        central.cancelAllperipherals()
         self.callback?.cancelPeripheralsConnectionBlock = callback
     }
     
