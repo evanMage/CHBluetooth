@@ -9,19 +9,21 @@ import Foundation
 import CoreBluetooth
 
 /// BLE core Central
-class CHCentralManager: NSObject {
+final class CHCentralManager: NSObject {
     
-    internal var centralManager: CBCentralManager?
+    private static let bleQueue = DispatchQueue(label: "com.chbluetooth.central", qos: .userInitiated)
+    
     internal var options: CHOptions?
-    internal var callback: CHCallback?
+    internal var callback: CHCentralCallback?
     internal var connectedPeripherals: [String: CBPeripheral] = [:]
     internal var notifyDict: [String: CHCharacteristicInfoBlock] = [:]
-    private lazy var discoverPeripherals: [UUID: CBPeripheral] = [:]
+    private var discoverPeripherals: [UUID: CBPeripheral] = [:]
+    private var centralManager: CBCentralManager?
     
     /// 初始化
-    required init(options: Dictionary<String, Any>? = nil) {
+    required init(options: [String: Any]? = nil) {
         super.init()
-        centralManager = CBCentralManager(delegate: self, queue: DispatchQueue(label: "com.chbluetooth.central", qos: .userInitiated), options: options)
+        centralManager = CBCentralManager(delegate: self, queue: CHCentralManager.bleQueue, options: options)
     }
     
 }
@@ -31,20 +33,24 @@ extension CHCentralManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         callback?.centralManagerDidUpdateStateBlock?(central)
     }
+    
     /// 发现外设设备
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         discoverPeripherals[peripheral.identifier] = peripheral
         callback?.discoverPeripheralsBlock?(peripheral, advertisementData, RSSI)
     }
+    
     /// 连接外设成功
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         connectedPeripherals[peripheral.identifier.uuidString] = peripheral
         callback?.connectedPeripheralBlock?(peripheral)
     }
+    
     /// 外设连接失败
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         callback?.failToConnectBlock?(peripheral, error)
     }
+    
     /// 外设设备断开连接
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         connectedPeripherals.removeValue(forKey: peripheral.identifier.uuidString)
@@ -54,9 +60,15 @@ extension CHCentralManager: CBCentralManagerDelegate {
         }
     }
     
-    /// 支持后台模式
-    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        //
+    /// 后台模式恢复状态
+    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
+        guard let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] else {
+            return
+        }
+        for peripheral in peripherals {
+            connectedPeripherals[peripheral.identifier.uuidString] = peripheral
+            peripheral.delegate = self
+        }
     }
     
 }
@@ -109,7 +121,7 @@ extension CHCentralManager: CBPeripheralDelegate {
 extension CHCentralManager {
     
     /// 开始扫描设备
-    func scanPeripherals(services: [CBUUID]? = nil, options: [String : Any]? = nil) -> Void {
+    func scanPeripherals(services: [CBUUID]? = nil, options: [String: Any]? = nil) {
         guard centralManager?.state == .poweredOn else {
             return
         }
@@ -117,70 +129,76 @@ extension CHCentralManager {
         centralManager?.scanForPeripherals(withServices: services, options: options)
     }
     
-    /// 获取系统连接的蓝牙设备
-    func retrieveConnectedPeripherals(_ services: [CBUUID]) -> Array<CBPeripheral> {
-        return centralManager?.retrieveConnectedPeripherals(withServices: services) ?? []
+    /// 获取系统已连接的蓝牙设备
+    func retrieveConnectedPeripherals(_ services: [CBUUID]) -> [CBPeripheral] {
+        centralManager?.retrieveConnectedPeripherals(withServices: services) ?? []
     }
     
-    /// 获取已知外设的蓝牙设备
-    func retrievePeripherals(identifiers: [UUID]) -> Array<CBPeripheral> {
-        return centralManager?.retrievePeripherals(withIdentifiers: identifiers) ?? []
+    /// 获取已知外设
+    func retrievePeripherals(identifiers: [UUID]) -> [CBPeripheral] {
+        centralManager?.retrievePeripherals(withIdentifiers: identifiers) ?? []
     }
     
     /// 停止扫描设备
-    func stopScanningPeripherals() -> Void {
+    func stopScanningPeripherals() {
         centralManager?.stopScan()
         discoverPeripherals.removeAll()
     }
     
     /// 开始连接设备
-    func startConnect(_ peripheral: CBPeripheral) -> Void {
+    func startConnect(_ peripheral: CBPeripheral) {
+        guard centralManager?.state == .poweredOn else {
+            return
+        }
         centralManager?.connect(peripheral, options: options?.connectPeripheralWithOptions)
     }
-    /// 断开连接设备
-    func cancelPeripheral(_ peripheral: CBPeripheral) -> Void {
+    
+    /// 断开指定设备连接
+    func cancelPeripheral(_ peripheral: CBPeripheral) {
         centralManager?.cancelPeripheralConnection(peripheral)
     }
-    /// 断开所有连接的设备
-    func cancelAllperipherals() -> Void {
-        for peripheral in connectedPeripherals.values {
-            centralManager?.cancelPeripheralConnection(peripheral)
+    
+    /// 断开所有已连接设备
+    func cancelAllPeripherals() {
+        connectedPeripherals.values.forEach {
+            centralManager?.cancelPeripheralConnection($0)
         }
     }
     
     /// 开始发现服务
-    func startDiscoverServices(_ peripheral: CBPeripheral) -> Void {
+    func startDiscoverServices(_ peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.discoverServices(options?.discoverWithServices)
     }
     
     /// 发现特征值
     func startDiscoverCharacteristics(_ peripheral: CBPeripheral) {
-        for service in peripheral.services ?? [] {
+        guard let services = peripheral.services else {
+            return
+        }
+        for service in services {
             peripheral.discoverCharacteristics(options?.discoverWithCharacteristics, for: service)
         }
     }
     
-    /// 读取RSSI
-    func readRSSI(_ peripheral: CBPeripheral) -> Void {
+    /// 读取 RSSI
+    func readRSSI(_ peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.readRSSI()
     }
     
-    /// 监听
-    func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ block: @escaping CHCharacteristicInfoBlock) -> Void {
-        let key = notifyKey(peripheral: peripheral, characteristic: characteristic)
-        notifyDict.updateValue(block, forKey: key)
+    /// 注册特征值监听回调
+    func notify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ block: @escaping CHCharacteristicInfoBlock) {
+        notifyDict[notifyKey(peripheral: peripheral, characteristic: characteristic)] = block
     }
     
-    func removeNotify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic) -> Void {
-        let key = notifyKey(peripheral: peripheral, characteristic: characteristic)
-        notifyDict.removeValue(forKey: key)
+    /// 移除特征值监听回调
+    func removeNotify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic) {
+        notifyDict.removeValue(forKey: notifyKey(peripheral: peripheral, characteristic: characteristic))
     }
-    
     
     private func notifyKey(peripheral: CBPeripheral, characteristic: CBCharacteristic) -> String {
-        return [peripheral.identifier.uuidString, characteristic.service?.uuid.uuidString ?? "", characteristic.uuid.uuidString].joined(separator: "_")
+        peripheral.identifier.uuidString + "_" + (characteristic.service?.uuid.uuidString ?? "") + "_" + characteristic.uuid.uuidString
     }
 }
 

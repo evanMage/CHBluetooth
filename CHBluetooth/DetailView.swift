@@ -71,13 +71,13 @@ struct CharacteristicView: View {
         VStack {
             if characteristic.properties.contains(.read) {
                 Button("read") {
-                    CHBluetooth.sharedBluetooth.onReadValueForCharacteristic { peripheral, characteristic, error in
+                    CHBluetooth.shared.onReadValueForCharacteristic { peripheral, characteristic, error in
                         if let data = characteristic.value {
                             readValue = data.utf8Str ?? ""
                             print(readValue)
                         }
                     }
-                    CHBluetooth.sharedBluetooth.readValue(peripheral, characteristic)
+                    CHBluetooth.shared.readValue(peripheral, characteristic)
                 }
                 Text(readValue)
             }
@@ -96,7 +96,7 @@ struct CharacteristicView: View {
             }
             if characteristic.properties.contains(.notify) || characteristic.properties.contains(.indicate) {
                 Button("notify") {
-                    CHBluetooth.sharedBluetooth.notify(peripheral, characteristic) { peripheral, characteristic, error in
+                    CHBluetooth.shared.notify(peripheral, characteristic) { peripheral, characteristic, error in
                         if let data = characteristic.value {
                             notifyValue = data.utf8Str ?? ""
                             print(notifyValue)

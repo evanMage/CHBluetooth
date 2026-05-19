@@ -12,7 +12,7 @@ import CHBluetoothKit
 class CHPeripheralExample: NSObject, ObservableObject {
     
     static let manager = CHPeripheralExample()
-    private let bluetooth = CHBluetooth.sharedBluetooth
+    private let bluetooth = CHBluetooth.shared
      
     private var peripheral: CBPeripheralManager?
     private var notifyCharacteristic: CBMutableCharacteristic?

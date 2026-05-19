@@ -41,33 +41,35 @@ public typealias CHPeripheralModeIsReadyToUpdateSubscribers = (_ peripheral: CBP
 public typealias CHPeripheralModeCharacteristicBlock = (_ peripheral: CBPeripheralManager, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void
 #endif
 
-class CHCallback {
-    //MARK: - central callback
-    var centralManagerDidUpdateStateBlock: CHCentralManagerBlock? = nil
-    var discoverPeripheralsBlock: CHDiscoverPeripheralsBlock? = nil
-    var connectedPeripheralBlock: CHConnectedPeripheralBlock? = nil
-    var failToConnectBlock: CHPeripheralInfoBlock? = nil
-    var disconnectBlock: CHPeripheralInfoBlock? = nil
-    var discoverServicesBlock: CHPeripheralInfoBlock? = nil
-    var discoverCharacteristicsBlock: CHDiscoverCharacteristicsBlock? = nil
-    var readValueForCharacteristicBlock: CHCharacteristicInfoBlock? = nil
-    var discoverDescriptorsForCharacteristicBlock: CHCharacteristicInfoBlock? = nil
-    var readValueForDescriptorsBlock: CHReadValueForDescriptorsBlock? = nil
-    var didWriteValueForCharacteristicBlock: CHCharacteristicInfoBlock? = nil
-    var didWriteValueForDescriptorBlock: CHDidWriteValueForDescriptorBlock? = nil
-    var didUpdateNotificationStateForCharacteristicBlock: CHDidUpdateNotificationStateForCharacteristicBlock? = nil
-    var readRSSIBlock: CHReadRSSIBlock? = nil
-    var cancelScanBlock: CHCentralManagerBlock? = nil
-    var cancelPeripheralsConnectionBlock: CHCentralManagerBlock? = nil
-#if !os(watchOS)
-    //MARK: - peripheral callback
-    var peripheralModeDidUpdateStateBlock: CHPeripheralModeDidUpdateStateBlock? = nil
-    var peripheralModeDidAddService: CHPeripheralModeDidAddService? = nil
-    var peripheralModeDidStartAdvertising: CHPeripheralModeDidStartAdvertising? = nil
-    var peripheralModeDidReceiveReadRequest: CHPeripheralModeDidReceiveReadRequest? = nil
-    var peripheralModeDidReceiveWriteRequests: CHPeripheralModeDidReceiveWriteRequests? = nil
-    var peripheralModeIsReadyToUpdateSubscribers: CHPeripheralModeIsReadyToUpdateSubscribers? = nil
-    var peripheralModeDidSubscribeToCharacteristic: CHPeripheralModeCharacteristicBlock? = nil
-    var peripheralModeDidUnSubscribeToCharacteristic: CHPeripheralModeCharacteristicBlock? = nil
-#endif
+// MARK: - 中心模式回调
+final class CHCentralCallback {
+    var centralManagerDidUpdateStateBlock: CHCentralManagerBlock?
+    var discoverPeripheralsBlock: CHDiscoverPeripheralsBlock?
+    var connectedPeripheralBlock: CHConnectedPeripheralBlock?
+    var failToConnectBlock: CHPeripheralInfoBlock?
+    var disconnectBlock: CHPeripheralInfoBlock?
+    var discoverServicesBlock: CHPeripheralInfoBlock?
+    var discoverCharacteristicsBlock: CHDiscoverCharacteristicsBlock?
+    var readValueForCharacteristicBlock: CHCharacteristicInfoBlock?
+    var discoverDescriptorsForCharacteristicBlock: CHCharacteristicInfoBlock?
+    var readValueForDescriptorsBlock: CHReadValueForDescriptorsBlock?
+    var didWriteValueForCharacteristicBlock: CHCharacteristicInfoBlock?
+    var didWriteValueForDescriptorBlock: CHDidWriteValueForDescriptorBlock?
+    var didUpdateNotificationStateForCharacteristicBlock: CHDidUpdateNotificationStateForCharacteristicBlock?
+    var readRSSIBlock: CHReadRSSIBlock?
+    var cancelPeripheralsConnectionBlock: CHCentralManagerBlock?
 }
+
+#if !os(watchOS)
+// MARK: - 外设模式回调
+final class CHPeripheralCallback {
+    var peripheralModeDidUpdateStateBlock: CHPeripheralModeDidUpdateStateBlock?
+    var peripheralModeDidAddService: CHPeripheralModeDidAddService?
+    var peripheralModeDidStartAdvertising: CHPeripheralModeDidStartAdvertising?
+    var peripheralModeDidReceiveReadRequest: CHPeripheralModeDidReceiveReadRequest?
+    var peripheralModeDidReceiveWriteRequests: CHPeripheralModeDidReceiveWriteRequests?
+    var peripheralModeIsReadyToUpdateSubscribers: CHPeripheralModeIsReadyToUpdateSubscribers?
+    var peripheralModeDidSubscribeToCharacteristic: CHPeripheralModeCharacteristicBlock?
+    var peripheralModeDidUnSubscribeToCharacteristic: CHPeripheralModeCharacteristicBlock?
+}
+#endif

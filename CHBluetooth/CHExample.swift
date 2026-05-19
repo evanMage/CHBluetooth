@@ -11,7 +11,7 @@ import CHBluetoothKit
 
 class CHExample: NSObject, ObservableObject {
     
-    let bluetooth = CHBluetooth.sharedBluetooth
+    let bluetooth = CHBluetooth.shared
     
     @Published var scanPeripherals: Array<CBPeripheral> = []
     @Published var discoverCharacteristics: Dictionary<String, Array<CBService>> = [:]
