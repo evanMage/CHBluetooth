@@ -75,7 +75,9 @@ extension CHBluetooth {
     /// - Parameter callback: 回调
     public func stopScan(callback: CHCentralManagerBlock? = nil) -> Void {
         central.stopScanningPeripherals()
-        callback?(central.centralManager)
+        if let centralManager = central.centralManager {
+            callback?(centralManager)
+        }
     }
     /// 开始连接设备
     public func startConnect(_ peripheral: CBPeripheral, connectOptions: Dictionary<String, Any>? = nil) -> Void {
@@ -197,7 +199,7 @@ extension CHBluetooth {
             return
         }
         peripheral.setNotifyValue(true, for: characteristic)
-        central.notify(characteristic, callback)
+        central.notify(peripheral, characteristic, callback)
     }
     
     /// 移除监听特征值
@@ -207,7 +209,7 @@ extension CHBluetooth {
     /// - Returns: 结果回调
     public func removeNotify(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic) -> Void {
         peripheral.setNotifyValue(false, for: characteristic)
-        central.removeNotify(characteristic)
+        central.removeNotify(peripheral, characteristic)
     }
     
 }
