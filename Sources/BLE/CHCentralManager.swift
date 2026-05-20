@@ -44,6 +44,7 @@ extension CHCentralManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         connectedPeripherals[peripheral.identifier.uuidString] = peripheral
         callback?.connectedPeripheralBlock?(peripheral)
+        discoverPeripherals.removeAll()
     }
     
     /// 外设连接失败
@@ -142,7 +143,6 @@ extension CHCentralManager {
     /// 停止扫描设备
     func stopScanningPeripherals() {
         centralManager?.stopScan()
-        discoverPeripherals.removeAll()
     }
     
     /// 开始连接设备
