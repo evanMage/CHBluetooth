@@ -160,6 +160,7 @@ extension CHCentralManager {
     
     /// 断开所有已连接设备
     func cancelAllPeripherals() {
+        notifyDict.removeAll()
         connectedPeripherals.values.forEach {
             centralManager?.cancelPeripheralConnection($0)
         }

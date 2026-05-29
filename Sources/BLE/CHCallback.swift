@@ -1,5 +1,5 @@
 //
-//  CHDefinitions.swift
+//  CHCallback.swift
 //  CHBluetooth
 //
 //  Created by evan on 2024/04/15.
@@ -36,7 +36,7 @@ public typealias CHPeripheralModeDidUpdateStateBlock = (_ peripheral: CBPeripher
 public typealias CHPeripheralModeDidAddService = (_ peripheral: CBPeripheralManager, _ service: CBService, _ error: Error?) -> Void
 public typealias CHPeripheralModeDidStartAdvertising = (_ peripheral: CBPeripheralManager, _ error: Error?) -> Void
 public typealias CHPeripheralModeDidReceiveReadRequest = (_ peripheral: CBPeripheralManager, _ request: CBATTRequest) -> Void
-public typealias CHPeripheralModeDidReceiveWriteRequests = (_ peripheral: CBPeripheralManager, _ requests: Array<CBATTRequest>) -> Void
+public typealias CHPeripheralModeDidReceiveWriteRequests = (_ peripheral: CBPeripheralManager, _ requests: [CBATTRequest]) -> Void
 public typealias CHPeripheralModeIsReadyToUpdateSubscribers = (_ peripheral: CBPeripheralManager) -> Void
 public typealias CHPeripheralModeCharacteristicBlock = (_ peripheral: CBPeripheralManager, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void
 #endif

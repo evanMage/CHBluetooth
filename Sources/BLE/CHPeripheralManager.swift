@@ -27,6 +27,7 @@ final class CHPeripheralManager: NSObject {
 
     func addService(_ services: [CBMutableService]) {
         self.services = services
+        addServiceCount = 0
         for service in services {
             peripheralManager.add(service)
         }
@@ -48,6 +49,7 @@ final class CHPeripheralManager: NSObject {
     func stopAdvertising() {
         peripheralManager.stopAdvertising()
         addServiceCount = 0
+        services = []
     }
 
 }
