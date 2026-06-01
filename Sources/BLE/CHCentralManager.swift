@@ -11,7 +11,7 @@ import CoreBluetooth
 /// BLE core Central
 final class CHCentralManager: NSObject {
     
-    private static let bleQueue = DispatchQueue(label: "com.chbluetooth.central", qos: .userInitiated)
+    private let bleQueue = DispatchQueue(label: "com.chbluetooth.central", qos: .userInitiated)
     
     internal var options: CHOptions?
     internal var callback: CHCentralCallback?
@@ -23,7 +23,7 @@ final class CHCentralManager: NSObject {
     /// 初始化
     required init(options: [String: Any]? = nil) {
         super.init()
-        centralManager = CBCentralManager(delegate: self, queue: CHCentralManager.bleQueue, options: options)
+        centralManager = CBCentralManager(delegate: self, queue: bleQueue, options: options)
     }
     
 }

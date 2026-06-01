@@ -9,7 +9,7 @@ import Foundation
 import CoreBluetooth
 
 /// Swift BLE
-final public class CHBluetooth {
+public final class CHBluetooth: @unchecked Sendable {
     
     /// 单例
     public static let shared = CHBluetooth()
