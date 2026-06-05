@@ -7,5 +7,5 @@
 
 public enum CHBlue: Sendable {
     /// Current  version
-    public static let version = "1.0.4"
+    public static let version = "1.0.5"
 }
