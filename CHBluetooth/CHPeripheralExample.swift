@@ -25,7 +25,7 @@ class CHPeripheralExample: NSObject, ObservableObject {
     
     private func setPeripheral() -> Void {
         
-        bluetooth.peripheralModeDidUpdateState { [self] peripheral in
+        bluetooth.peripheralDidUpdateState { [self] peripheral in
             print("------------- \(peripheral.state)")
             if peripheral.state == .poweredOn {
                 let characteristic1 = bluetooth.makeCharacteristic(characteristicUUID: CBUUID(string: "DA18") , properties: [.notify], permissions: [.readable])
@@ -38,23 +38,23 @@ class CHPeripheralExample: NSObject, ObservableObject {
             }
         }
         
-        bluetooth.peripheralModeDidAddService { [self] peripheral, service, error in
+        bluetooth.peripheralDidAddService { [self] peripheral, service, error in
             bluetooth.startAdvertising(localName: "iPhone")
         }
         
-        bluetooth.peripheralModeDidStartAdvertising { peripheral, error in
+        bluetooth.peripheralDidStartAdvertising { peripheral, error in
             print("开始广播：\(peripheral)")
             self.peripheral = peripheral
         }
         
-        bluetooth.peripheralModeDidReceiveReadRequest { peripheral, request in
+        bluetooth.peripheralDidReceiveReadRequest { peripheral, request in
             print("接收读请求：\(peripheral)")
             let data = "hello".stringToData
             request.value = data
             peripheral.respond(to: request, withResult: .success)
         }
         
-        bluetooth.peripheralModeDidReceiveWriteRequests { peripheral, requests in
+        bluetooth.peripheralDidReceiveWriteRequests { peripheral, requests in
             print("接收写请求：\(peripheral)")
             for request in requests {
                 let value = request.value
@@ -62,17 +62,17 @@ class CHPeripheralExample: NSObject, ObservableObject {
             }
         }
         
-        bluetooth.peripheralModeDidSubscribeToCharacteristic { [self] peripheral, central, characteristic in
+        bluetooth.peripheralDidSubscribeToCharacteristic { [self] peripheral, central, characteristic in
             print("接收订阅通知：\(peripheral)")
             bluetooth.stopAdvertising()
         }
         
-        bluetooth.peripheralModeDidUnSubscribeToCharacteristic { [self] peripheral, central, characteristic in
+        bluetooth.peripheralDidUnSubscribeToCharacteristic { [self] peripheral, central, characteristic in
             print("接收订阅取消：\(peripheral)")
             bluetooth.startAdvertising(localName: "iPhone")
         }
         
-        bluetooth.peripheralModeIsReadyToUpdateSubscribers { [self] peripheral in
+        bluetooth.peripheralIsReadyToUpdateSubscribers { [self] peripheral in
             if let value = "update".stringToData, let notifyCharacteristic = notifyCharacteristic {
                 peripheral.updateValue(value, for: notifyCharacteristic, onSubscribedCentrals: nil)
             }

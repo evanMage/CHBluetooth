@@ -58,43 +58,43 @@ extension CHPeripheralManager: CBPeripheralManagerDelegate {
     
     /// Tells the delegate the peripheral manager's state updated
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        callback?.peripheralModeDidUpdateStateBlock?(peripheral)
+        callback?.peripheralDidUpdateStateBlock?(peripheral)
     }
     
     /// Adding Services
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: (any Error)?) {
         addServiceCount += 1
-        callback?.peripheralModeDidAddService?(peripheral, service, error)
+        callback?.peripheralDidAddService?(peripheral, service, error)
     }
     
     /// 开始广播
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: (any Error)?) {
-        callback?.peripheralModeDidStartAdvertising?(peripheral, error)
+        callback?.peripheralDidStartAdvertising?(peripheral, error)
     }
     
     /// 读请求
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        callback?.peripheralModeDidReceiveReadRequest?(peripheral, request)
+        callback?.peripheralDidReceiveReadRequest?(peripheral, request)
     }
     
     /// 写请求
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        callback?.peripheralModeDidReceiveWriteRequests?(peripheral, requests)
+        callback?.peripheralDidReceiveWriteRequests?(peripheral, requests)
     }
     
     /// 接收订阅通知
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        callback?.peripheralModeDidSubscribeToCharacteristic?(peripheral, central, characteristic)
+        callback?.peripheralDidSubscribeToCharacteristic?(peripheral, central, characteristic)
     }
     
     /// 接收订阅取消
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-        callback?.peripheralModeDidUnSubscribeToCharacteristic?(peripheral, central, characteristic)
+        callback?.peripheralDidUnSubscribeToCharacteristic?(peripheral, central, characteristic)
     }
     
     /// Tells the delegate that a local peripheral device is ready to send characteristic value updates.
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
-        callback?.peripheralModeIsReadyToUpdateSubscribers?(peripheral)
+        callback?.peripheralIsReadyToUpdateSubscribers?(peripheral)
     }
     
 }

@@ -41,21 +41,11 @@ extension CHBluetooth {
     
     /// 扫描参数配置
     public func optionsConfig(scanOptions: [String: Any]? = nil, connectOptions: [String: Any]? = nil, scanServices: [CBUUID]? = nil, discoverServices: [CBUUID]? = nil, discoverCharacteristics: [CBUUID]? = nil) {
-        if let scanOptions {
-            options.scanForPeripheralsWithOptions = scanOptions
-        }
-        if let connectOptions {
-            options.connectPeripheralWithOptions = connectOptions
-        }
-        if let scanServices {
-            options.scanForPeripheralsWithServices = scanServices
-        }
-        if let discoverServices {
-            options.discoverWithServices = discoverServices
-        }
-        if let discoverCharacteristics {
-            options.discoverWithCharacteristics = discoverCharacteristics
-        }
+        options.scanForPeripheralsWithOptions = scanOptions
+        options.connectPeripheralWithOptions = connectOptions
+        options.scanForPeripheralsWithServices = scanServices
+        options.discoverWithServices = discoverServices
+        options.discoverWithCharacteristics = discoverCharacteristics
         central.options = options
     }
     
@@ -76,6 +66,9 @@ extension CHBluetooth {
     }
     
     /// 开始扫描
+    /// - Parameters:
+    ///   - scanServices: ！= nil 会重设扫描Services
+    ///   - scanOptions: ！= nil 会重设扫描Options
     public func startScanPeripherals(scanServices: [CBUUID]? = nil, scanOptions: [String: Any]? = nil) {
         if let scanServices {
             options.scanForPeripheralsWithServices = scanServices
@@ -93,6 +86,8 @@ extension CHBluetooth {
     }
     
     /// 开始连接设备
+    /// - Parameters:
+    ///   - connectOptions: ！= nil 时options会被重设
     public func startConnect(_ peripheral: CBPeripheral, connectOptions: [String: Any]? = nil) {
         if let connectOptions { options.connectPeripheralWithOptions = connectOptions }
         central.startConnect(peripheral)
@@ -263,43 +258,43 @@ extension CHBluetooth {
     }
     
     /// 外设状态更新
-    public func peripheralModeDidUpdateState(_ callback: @escaping CHPeripheralModeDidUpdateStateBlock) {
-        peripheralCallback?.peripheralModeDidUpdateStateBlock = callback
+    public func peripheralDidUpdateState(_ callback: @escaping CHPeripheralDidUpdateStateBlock) {
+        peripheralCallback?.peripheralDidUpdateStateBlock = callback
     }
     
     /// 增加service
-    public func peripheralModeDidAddService(_ callback: @escaping CHPeripheralModeDidAddService) {
-        peripheralCallback?.peripheralModeDidAddService = callback
+    public func peripheralDidAddService(_ callback: @escaping CHPeripheralDidAddService) {
+        peripheralCallback?.peripheralDidAddService = callback
     }
     
     /// 开始广播回调
-    public func peripheralModeDidStartAdvertising(_ callback: @escaping CHPeripheralModeDidStartAdvertising) {
-        peripheralCallback?.peripheralModeDidStartAdvertising = callback
+    public func peripheralDidStartAdvertising(_ callback: @escaping CHPeripheralDidStartAdvertising) {
+        peripheralCallback?.peripheralDidStartAdvertising = callback
     }
     
     /// 读取请求
-    public func peripheralModeDidReceiveReadRequest(_ callback: @escaping CHPeripheralModeDidReceiveReadRequest) {
-        peripheralCallback?.peripheralModeDidReceiveReadRequest = callback
+    public func peripheralDidReceiveReadRequest(_ callback: @escaping CHPeripheralDidReceiveReadRequest) {
+        peripheralCallback?.peripheralDidReceiveReadRequest = callback
     }
     
     /// 写入请求
-    public func peripheralModeDidReceiveWriteRequests(_ callback: @escaping CHPeripheralModeDidReceiveWriteRequests) {
-        peripheralCallback?.peripheralModeDidReceiveWriteRequests = callback
+    public func peripheralDidReceiveWriteRequests(_ callback: @escaping CHPeripheralDidReceiveWriteRequests) {
+        peripheralCallback?.peripheralDidReceiveWriteRequests = callback
     }
     
     /// 接收订阅通知
-    public func peripheralModeIsReadyToUpdateSubscribers(_ callback: @escaping CHPeripheralModeIsReadyToUpdateSubscribers) {
-        peripheralCallback?.peripheralModeIsReadyToUpdateSubscribers = callback
+    public func peripheralIsReadyToUpdateSubscribers(_ callback: @escaping CHPeripheralIsReadyToUpdateSubscribers) {
+        peripheralCallback?.peripheralIsReadyToUpdateSubscribers = callback
     }
     
     /// 订阅特征值
-    public func peripheralModeDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeCharacteristicBlock) {
-        peripheralCallback?.peripheralModeDidSubscribeToCharacteristic = callback
+    public func peripheralDidSubscribeToCharacteristic(_ callback: @escaping CHPeripheralCharacteristicBlock) {
+        peripheralCallback?.peripheralDidSubscribeToCharacteristic = callback
     }
     
     /// 取消订阅特征值
-    public func peripheralModeDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralModeCharacteristicBlock) {
-        peripheralCallback?.peripheralModeDidUnSubscribeToCharacteristic = callback
+    public func peripheralDidUnSubscribeToCharacteristic(_ callback: @escaping CHPeripheralCharacteristicBlock) {
+        peripheralCallback?.peripheralDidUnSubscribeToCharacteristic = callback
     }
 }
 #endif
